@@ -82,44 +82,26 @@ static char *szTempPikeBodyName[] = {
 	"char\\tmABCD\\c007.ini"
 };
 
-//static char *szTempAssassineBodyName[] = {
-//	"char\\tmABCD\\e001.ini",
-//	"char\\tmABCD\\e002.ini",
-//	"char\\tmABCD\\e003.ini",
-//	"char\\tmABCD\\e004.ini",
-//	"char\\tmABCD\\e005.ini",
-//	"char\\tmABCD\\e006.ini",
-//	"char\\tmABCD\\e007.ini"
-//};
+static char *szTempAssassineBodyName[] = {
+	"char\\tmABCD\\e001.ini",
+	"char\\tmABCD\\e002.ini",
+	"char\\tmABCD\\e003.ini",
+	"char\\tmABCD\\e004.ini",
+	"char\\tmABCD\\e005.ini",
+	"char\\tmABCD\\e006.ini",
+	"char\\tmABCD\\e007.ini"
+};
 
-
-//char *szMorShamanFaceName[2][3] =
-//{
-//
-//{
-//		"char\\tmABCD\\Mmh-E01.inf",
-//		"char\\tmABCD\\Mmh-E02.inf",
-//		"char\\tmABCD\\Mmh-E03.inf"
-//	}
-//,
-//
-//{
-//		"char\\tmABCD\\Mmh-E01.inf",
-//		"char\\tmABCD\\Mmh-E02.inf",
-//		"char\\tmABCD\\Mmh-E03.inf"
-//	}
-//};
-//
-//static char *szMorShamanBodyName[] =
-//{
-//	"char\\tmABCD\\me001.ini",
-//	"char\\tmABCD\\me002.ini",
-//	"char\\tmABCD\\me003.ini",
-//	"char\\tmABCD\\me004.ini",
-//	"char\\tmABCD\\me005.ini",
-//	"char\\tmABCD\\me006.ini",
-//	"char\\tmABCD\\me007.ini"
-//};
+static char *szMorShamanBodyName[] =
+{
+	"char\\tmABCD\\me001.ini",
+	"char\\tmABCD\\me002.ini",
+	"char\\tmABCD\\me003.ini",
+	"char\\tmABCD\\me004.ini",
+	"char\\tmABCD\\me005.ini",
+	"char\\tmABCD\\me006.ini",
+	"char\\tmABCD\\me007.ini"
+};
 
 char *szTempFighterFaceName[2][3] = {
 	{
@@ -172,19 +154,33 @@ char *szTempPikeFaceName[2][3] = {
 	}
 };
 
-//char *szTempAssassineFaceName[2][3] = {
-//	{
-//		"char\\tmABCD\\tfh-e01.inf",
-//		"char\\tmABCD\\tfh-e02.inf",
-//		"char\\tmABCD\\tfh-e03.inf"
-//	},
-//	{
-//		"char\\tmABCD\\tfh-e01a.inf",
-//		"char\\tmABCD\\tfh-e02a.inf",
-//		"char\\tmABCD\\tfh-e03a.inf"
-//	}
-//};
+char *szTempAssassineFaceName[2][3] = 
+{
+	{
+		"char\\tmABCD\\tfh-e01.inf",
+		"char\\tmABCD\\tfh-e02.inf",
+		"char\\tmABCD\\tfh-e03.inf"
+	},
+	{
+		"char\\tmABCD\\tfh-e01a.inf",
+		"char\\tmABCD\\tfh-e02a.inf",
+		"char\\tmABCD\\tfh-e03a.inf"
+	}
+};
 
+char* szMorShamanFaceName[2][3] =
+{
+	{
+		"char\\tmABCD\\Mmh-E01.inf",
+		"char\\tmABCD\\Mmh-E02.inf",
+		"char\\tmABCD\\Mmh-E03.inf"
+	},
+	{
+		"char\\tmABCD\\Mmh-E01a.inf",
+		"char\\tmABCD\\Mmh-E02a.inf",
+		"char\\tmABCD\\Mmh-E03a.inf"
+	}
+};
 
 static char *szMorKnightBodyName[] = {
 	"char\\tmABCD\\ma001.ini",
@@ -1135,11 +1131,11 @@ int HoLogin::Main()
 					memcpy(CharacterName1, szTempArcherBodyName[0], sizeof(CharacterName1));
 					memcpy(CharacterName2, szTempArcherFaceName[0][JobFaceSelectNum], sizeof(CharacterName2));
 				}
-				/*else if (JobBodySelectNum == 4)
+				else if (JobBodySelectNum == 4)
 				{
 					memcpy(CharacterName1, szTempAssassineBodyName[0], sizeof(CharacterName1));
 					memcpy(CharacterName2, szTempAssassineFaceName[0][JobFaceSelectNum], sizeof(CharacterName2));
-				}*/
+				}
 
 				NewCharInfo.JobCode = TempNewCharacterInit[JobBodySelectNum][0];
 				NewCharInfo.Strength = TempNewCharacterInit[JobBodySelectNum][1];
@@ -1173,11 +1169,11 @@ int HoLogin::Main()
 					memcpy(CharacterName1, szMorMagicianBodyName[0], sizeof(CharacterName1));
 					memcpy(CharacterName2, szMorMagicianFaceName[0][JobFaceSelectNum], sizeof(CharacterName2));
 				}
-				/*else if (JobBodySelectNum == 4)
+				else if (JobBodySelectNum == 4)
 				{
 					memcpy(CharacterName1, szMorShamanBodyName[0], sizeof(CharacterName1));
 					memcpy(CharacterName2, szMorShamanFaceName[0][JobFaceSelectNum], sizeof(CharacterName2));
-				}*/
+				}
 
 				NewCharInfo.JobCode = MorNewCharacterInit[JobBodySelectNum][0];
 				NewCharInfo.Strength = MorNewCharacterInit[JobBodySelectNum][1];
@@ -2539,8 +2535,9 @@ int HoLogin::Draw()
 					JobCharacter[JobCharacterCount].smCharInfo.JOB_CODE = JOBCODE_ARCHER;
 					AddJobCharacter(szTempArcherBodyName[0], szTempArcherFaceName[0][0]);
 
-					/*JobCharacter[JobCharacterCount].smCharInfo.JOB_CODE = JOBCODE_ASSASSINE;
-					AddJobCharacter(szTempAssassineBodyName[0], szTempAssassineFaceName[0][0]);*/
+					JobCharacter[JobCharacterCount].smCharInfo.JOB_CODE = JOBCODE_ASSASSINE;
+					AddJobCharacter(szTempAssassineBodyName[0], szTempAssassineFaceName[0][0]);
+
 					ReadTextures();
 
 				}
@@ -2596,8 +2593,8 @@ int HoLogin::Draw()
 					JobCharacter[JobCharacterCount].smCharInfo.JOB_CODE = JOBCODE_MAGICIAN;
 					AddJobCharacter(szMorMagicianBodyName[0], szMorMagicianFaceName[0][0]);
 
-					/*JobCharacter[JobCharacterCount].smCharInfo.JOB_CODE = JOBCODE_SHAMAN;
-					AddJobCharacter(szMorShamanBodyName[0], szMorShamanFaceName[0][0]);*/
+					JobCharacter[JobCharacterCount].smCharInfo.JOB_CODE = JOBCODE_SHAMAN;
+					AddJobCharacter(szMorShamanBodyName[0], szMorShamanFaceName[0][0]);
 
 					ReadTextures();
 				}
@@ -2726,8 +2723,8 @@ int HoLogin::Draw()
 						SetChangeJobFace(szTempPikeBodyName[0], szTempPikeFaceName[0][JobFaceSelectNum], JobBodySelectNum);
 					else if (JobBodySelectNum == 3)
 						SetChangeJobFace(szTempArcherBodyName[0], szTempArcherFaceName[0][JobFaceSelectNum], JobBodySelectNum);
-					/*else if (JobBodySelectNum == 4)
-						SetChangeJobFace(szTempAssassineBodyName[0], szTempAssassineFaceName[0][JobFaceSelectNum], JobBodySelectNum);*/
+					else if (JobBodySelectNum == 4)
+						SetChangeJobFace(szTempAssassineBodyName[0], szTempAssassineFaceName[0][JobFaceSelectNum], JobBodySelectNum);
 					break;
 
 				case TRIBE_Moryon:
@@ -2739,8 +2736,8 @@ int HoLogin::Draw()
 						SetChangeJobFace(szMorPriestessBodyName[0], szMorPriestessFaceName[0][JobFaceSelectNum], JobBodySelectNum);
 					else if (JobBodySelectNum == 3)
 						SetChangeJobFace(szMorMagicianBodyName[0], szMorMagicianFaceName[0][JobFaceSelectNum], JobBodySelectNum);
-					/*else if (JobBodySelectNum == 4)
-						SetChangeJobFace(szMorShamanBodyName[0], szMorShamanFaceName[0][JobFaceSelectNum], JobBodySelectNum);*/
+					else if (JobBodySelectNum == 4)
+						SetChangeJobFace(szMorShamanBodyName[0], szMorShamanFaceName[0][JobFaceSelectNum], JobBodySelectNum);
 					break;
 				}
 				JobCharacter[JobBodySelectNum].Flag = 1;
@@ -2801,8 +2798,8 @@ int HoLogin::Draw()
 										SetChangeJobFace(szTempPikeBodyName[0], szTempPikeFaceName[0][index], JobBodySelectNum);
 									else if (JobBodySelectNum == 3)
 										SetChangeJobFace(szTempArcherBodyName[0], szTempArcherFaceName[0][index], JobBodySelectNum);
-									/*else if (JobBodySelectNum == 4)
-										SetChangeJobFace(szTempAssassineBodyName[0], szTempAssassineFaceName[0][index], JobBodySelectNum);*/
+									else if (JobBodySelectNum == 4)
+										SetChangeJobFace(szTempAssassineBodyName[0], szTempAssassineFaceName[0][index], JobBodySelectNum);
 
 									break;
 
@@ -2816,9 +2813,9 @@ int HoLogin::Draw()
 										SetChangeJobFace(szMorPriestessBodyName[0], szMorPriestessFaceName[0][index], JobBodySelectNum);
 									else if (JobBodySelectNum == 3)
 										SetChangeJobFace(szMorMagicianBodyName[0], szMorMagicianFaceName[0][index], JobBodySelectNum);
-									/*else if (JobBodySelectNum == 4)
+									else if (JobBodySelectNum == 4)
 										SetChangeJobFace(szMorShamanBodyName[0], szMorShamanFaceName[0][index], JobBodySelectNum);
-									*/
+									
 									break;
 								}
 

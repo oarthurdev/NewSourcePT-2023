@@ -1,4 +1,4 @@
-#define	CHAR_LEVEL_MAX	100
+#define	CHAR_LEVEL_MAX	120
 
 
 #define sinNPC_SHOP				0x00000001	

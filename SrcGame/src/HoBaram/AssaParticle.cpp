@@ -9279,6 +9279,56 @@ void AssaShelltomUpWeapon2::Start(smCHAR *pCharacter, int timeCount, int shellTo
 		Face.g = 255;
 		Face.b = 255;
 	}
+
+	else if (shellTomCode == 12)
+	{
+		Face.r = 255;
+		Face.g = 255;
+		Face.b = 255;
+	}
+
+	else if (shellTomCode == 13)
+	{
+		Face.r = 255;
+		Face.g = 255;
+		Face.b = 255;
+	}
+
+	else if (shellTomCode == 14)
+	{
+		Face.r = 255;
+		Face.g = 255;
+		Face.b = 255;
+	}
+
+	else if (shellTomCode == 15)
+	{
+		Face.r = 255;
+		Face.g = 255;
+		Face.b = 255;
+	}
+
+	else if (shellTomCode == 16)
+	{
+	Face.r = 255;
+	Face.g = 255;
+	Face.b = 255;
+	}
+
+	else if (shellTomCode == 17)
+	{
+	Face.r = 255;
+	Face.g = 255;
+	Face.b = 255;
+	}
+
+	else if (shellTomCode == 18)
+	{
+	Face.r = 252;
+	Face.g = 77;
+	Face.b = 77;
+	}
+
 	else if (shellTomCode == 50) //이니그마
 	{
 		Face.r = 255;

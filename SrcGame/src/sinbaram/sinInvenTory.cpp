@@ -168,7 +168,7 @@ sINVENTORY sInven[INVENTORY_MAX_POS] = {
 	{ INVENTORY_POS_POTION ,{ 495 + 26 , 565  , 495 + 26 + 26 , 565 + 26 } },
 	{ INVENTORY_POS_POTION ,{ 495 + 26 + 26 , 565 , 495 + 26 + 26 + 26 , 565 + 26 } },
 	{ INVENTORY_POS_COSTUME ,{ 648 + 1 , 433 + 1 , 714 , 544 } },
-	{INVENTORY_POS_WingRight  ,{ 535 + 1 , 488 + 1 , 557 , 510 } }, //15
+	//{INVENTORY_POS_WingRight  ,{ 535 + 1 , 488 + 1 , 557 , 510 } }, //15
 	{ INVENTORY_POS_EARRINGSL  ,{ 508 + 1 , 489 + 1 , 530 , 511 } },
 	{ INVENTORY_POS_EARRINGSR  ,{ 535 + 1 , 489 + 1 , 557 , 511 } },
 };

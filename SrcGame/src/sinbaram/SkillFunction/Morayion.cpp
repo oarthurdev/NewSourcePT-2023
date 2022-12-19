@@ -335,6 +335,35 @@ int sinContinueSkillSet(sSKILL *lpSkill)
 	return TRUE;
 }
 
+BOOL AddTimer(int iTimerID, const std::string strName, const std::string strDescription, char* pszFileImage, int iDuration, int iCustomID)
+{
+	sSKILL sSkill;
+	ZeroMemory(&sSkill, sizeof(sSKILL));
+
+	sSkill.CODE = iTimerID;
+	sSkill.UseTime = iDuration;
+	sSkill.Point = 0;
+	sSkill.SkillTaget_CODE = iCustomID;
+	sSkill.MatIcon = CreateTextureMaterial(pszFileImage, 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	lstrcpy(sSkill.Skill_Info.SkillName, strName.c_str());
+	lstrcpy(sSkill.Skill_Info.SkillDoc, strDescription.c_str());
+
+	ReadTextures();
+
+	for (int i = 0; i < MAX_CONTINUE_SKILL; i++)
+	{
+		if (!ContinueSkill[i].Flag)
+		{
+			memcpy(&ContinueSkill[i], &sSkill, sizeof(sSKILL));
+			ContinueSkill[i].Flag = 1;
+			cSkill.SearchSkillDoc(&ContinueSkill[i]);
+			return TRUE;
+		}
+	}
+
+	return FALSE;
+}
+
 int sinCheckContinueSkill()
 {
 

@@ -11637,6 +11637,32 @@ int RecvCommandUser(smTRANS_COMMAND_EX * lpTransCommandEx)
 
 		StartEffect(lpTransCommandEx->LParam, lpTransCommandEx->SParam, lpTransCommandEx->EParam, EFFECT_RETURN1);
 		SkillPlaySound(SKILL_SOUND_LEARN, lpTransCommandEx->LParam, lpTransCommandEx->SParam, lpTransCommandEx->EParam);
+
+		if (lpTransCommandEx->LxParam == TRUE && lpTransCommandEx->SxParam == lpCurPlayer->dwObjectSerial)
+		{
+			extern BOOL AddTimer(int iTimerID, const std::string strName, const std::string strDescription, char* pszFileImage, int iDuration, int iCustomID);
+
+			char szFileName[256] = { 0 };
+			char szItemCode[32] = { 0 };
+
+			for (int i = 0; i < MAX_ITEM; i++)
+			{
+				if (sItem[i].CODE == lpTransCommandEx->WxParam)
+				{
+					lstrcpyA(szItemCode, sItem[i].LastCategory);
+
+					for (int i = 0; i < lstrlenA(szItemCode); i++)
+						szItemCode[i] = tolower(szItemCode[i]);
+
+					wsprintfA(szFileName, "game\\GUI\\Timers\\Crystals\\%s.tga", szItemCode);
+
+					if (szFileName[0] != 0 && lstrlenA(szFileName) > 0)
+						AddTimer(lpTransCommandEx->WxParam, sItem[i].sItemInfo.ItemName, "Cristal ativo!", szFileName, 240, lpTransCommandEx->ExParam);
+
+					break;
+				}
+			}
+		}
 		break;
 
 

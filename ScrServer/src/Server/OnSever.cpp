@@ -3805,6 +3805,13 @@ int	OpenMonsterFromCristal(DWORD dwItemCode, int x, int y, int z, rsPLAYINFO* lp
 				TransCommandEx.LParam = x;
 				TransCommandEx.SParam = y;
 				TransCommandEx.EParam = z;
+
+				//Crystal
+				TransCommandEx.LxParam = TRUE;						//Crystal Flag
+				TransCommandEx.WxParam = dwItemCode;				//Item Code
+				TransCommandEx.ExParam = lpChar->dwObjectSerial;
+				TransCommandEx.SxParam = lpPlayInfo->dwObjectSerial;
+
 				rsSendCommandUser(lpPlayInfo, &TransCommandEx);
 			}
 
@@ -22724,7 +22731,6 @@ int RecvMessage(SocketData* pcSocketData, char* psPacket)
 
 		case OpCode::FIND_CHEAT:
 		{
-			break;
 			if (lpPlayInfo)
 			{
 				PacketLogCheat* smPacket;
@@ -25034,7 +25040,7 @@ int RecvMessage(SocketData* pcSocketData, char* psPacket)
 
 						if (lpPlayInfo->getName().compare(szNick) == 0)
 						{
-							TransChatMessage.code = smTRANSCODE_YOU_ARE_GLADIATOR;
+							TransChatMessage.code = smTRANSCODE_YOU_ARE_GLADIATORms;
 							lstrcpy(TransChatMessage.szMessage, szNick);
 							TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 							lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);

@@ -2020,92 +2020,92 @@ int cHaPremiumItem::UsePremiumItem(int kind)
 	case 180:
 		haCastleSkillUseFlag = 1;
 		SetUpKeepItem(nsPremiumItem::FORCE, SINITEM_TIME_3HOURS, true, UpKeepItemName[21], 1);
-		//AssaParticle_ShelltomWeapon(lpCurPlayer, (DWORD)60 * 60 * 3 * 1000, 1);
+		AssaParticle_ShelltomWeapon(lpCurPlayer, (DWORD)60 * 60 * 3 * 1000, 1);
 		break;
 	case 181:
 		haCastleSkillUseFlag = 1;
 		SetUpKeepItem(nsPremiumItem::FORCE, SINITEM_TIME_3HOURS, true, UpKeepItemName[22], 1);
-		//AssaParticle_ShelltomWeapon(lpCurPlayer, (DWORD)60 * 60 * 3 * 1000, 2);
+		AssaParticle_ShelltomWeapon(lpCurPlayer, (DWORD)60 * 60 * 3 * 1000, 2);
 		break;
 	case 182:
 		haCastleSkillUseFlag = 1;
 		SetUpKeepItem(nsPremiumItem::FORCE, SINITEM_TIME_3HOURS, true, UpKeepItemName[23], 1);
-		//AssaParticle_ShelltomWeapon(lpCurPlayer, (DWORD)60 * 60 * 3 * 1000, 3);
+		AssaParticle_ShelltomWeapon(lpCurPlayer, (DWORD)60 * 60 * 3 * 1000, 3);
 		break;
 	case 183:
 		haCastleSkillUseFlag = 1;
 		SetUpKeepItem(nsPremiumItem::FORCE, SINITEM_TIME_3HOURS, true, UpKeepItemName[24], 1);
-		//AssaParticle_ShelltomWeapon(lpCurPlayer, (DWORD)60 * 60 * 3 * 1000, 4);
+		AssaParticle_ShelltomWeapon(lpCurPlayer, (DWORD)60 * 60 * 3 * 1000, 4);
 		break;
 	case 184:
 		haCastleSkillUseFlag = 1;
 		SetUpKeepItem(nsPremiumItem::FORCE, SINITEM_TIME_3HOURS, true, UpKeepItemName[25], 1);
-		//AssaParticle_ShelltomWeapon(lpCurPlayer, (DWORD)60 * 60 * 3 * 1000, 5);
+		AssaParticle_ShelltomWeapon(lpCurPlayer, (DWORD)60 * 60 * 3 * 1000, 5);
 		break;
 	case 185:
 		haCastleSkillUseFlag = 1;
 		SetUpKeepItem(nsPremiumItem::FORCE, SINITEM_TIME_3HOURS, true, UpKeepItemName[26], 1);
-		//AssaParticle_ShelltomWeapon(lpCurPlayer, (DWORD)60 * 60 * 3 * 1000, 6);
+		AssaParticle_ShelltomWeapon(lpCurPlayer, (DWORD)60 * 60 * 3 * 1000, 6);
 		break;
 	case 186:
 		haCastleSkillUseFlag = 1;
 		SetUpKeepItem(nsPremiumItem::FORCE, SINITEM_TIME_3HOURS, true, UpKeepItemName[27], 1);
-		//AssaParticle_ShelltomWeapon(lpCurPlayer, (DWORD)60 * 60 * 3 * 1000, 7);
+		AssaParticle_ShelltomWeapon(lpCurPlayer, (DWORD)60 * 60 * 3 * 1000, 7);
 		break;
 	case 187:
 		haCastleSkillUseFlag = 1;
 		SetUpKeepItem(nsPremiumItem::FORCE, SINITEM_TIME_3HOURS, true, UpKeepItemName[28], 1);
-		//AssaParticle_ShelltomWeapon(lpCurPlayer, (DWORD)60 * 60 * 3 * 1000, 8);
+		AssaParticle_ShelltomWeapon(lpCurPlayer, (DWORD)60 * 60 * 3 * 1000, 8);
 		break;
 	case 188:
 		haCastleSkillUseFlag = 1;
 		SetUpKeepItem(nsPremiumItem::FORCE, SINITEM_TIME_3HOURS, true, UpKeepItemName[29], 1);
-		//AssaParticle_ShelltomWeapon(lpCurPlayer, (DWORD)60 * 60 * 3 * 1000, 9);
+		AssaParticle_ShelltomWeapon(lpCurPlayer, (DWORD)60 * 60 * 3 * 1000, 9);
 		break;
 	case 189:
 		haCastleSkillUseFlag = 1;
 		SetUpKeepItem(nsPremiumItem::FORCE, SINITEM_TIME_3HOURS, true, UpKeepItemName[30], 1);
-		//AssaParticle_ShelltomWeapon(lpCurPlayer, (DWORD)60 * 60 * 3 * 1000, 10);
+		AssaParticle_ShelltomWeapon(lpCurPlayer, (DWORD)60 * 60 * 3 * 1000, 10);
 		break;
 	case 190:
 		haCastleSkillUseFlag = 1;
 		SetUpKeepItem(nsPremiumItem::FORCE, SINITEM_TIME_3HOURS, true, UpKeepItemName[31], 1);
-		//AssaParticle_ShelltomWeapon(lpCurPlayer, (DWORD)60 * 60 * 3 * 1000, 11);
+		AssaParticle_ShelltomWeapon(lpCurPlayer, (DWORD)60 * 60 * 3 * 1000, 11);
 		break;
 	case 191:
 		haCastleSkillUseFlag = 1;
 		SetUpKeepItem(nsPremiumItem::FORCE, SINITEM_TIME_3HOURS, true, UpKeepItemName[32], 1);
-		//AssaParticle_ShelltomWeapon(lpCurPlayer, (DWORD)60 * 60 * 3 * 1000, 12);
+		AssaParticle_ShelltomWeapon(lpCurPlayer, (DWORD)60 * 60 * 3 * 1000, 12);
 		break;
 	case 192:
 		haCastleSkillUseFlag = 1;
 		SetUpKeepItem(nsPremiumItem::FORCE, SINITEM_TIME_3HOURS, true, UpKeepItemName[33], 1);
-		//AssaParticle_ShelltomWeapon(lpCurPlayer, (DWORD)60 * 60 * 3 * 1000, 13);
+		AssaParticle_ShelltomWeapon(lpCurPlayer, (DWORD)60 * 60 * 3 * 1000, 13);
 		break;
 	case 193:
 		haCastleSkillUseFlag = 1;
 		SetUpKeepItem(nsPremiumItem::FORCE, SINITEM_TIME_3HOURS, true, UpKeepItemName[34], 1);
-		//AssaParticle_ShelltomWeapon(lpCurPlayer, (DWORD)60 * 60 * 3 * 1000, 14);
+		AssaParticle_ShelltomWeapon(lpCurPlayer, (DWORD)60 * 60 * 3 * 1000, 14);
 		break;
 	case 194:
 		haCastleSkillUseFlag = 1;
 		SetUpKeepItem(nsPremiumItem::FORCE, SINITEM_TIME_3HOURS, true, UpKeepItemName[35], 1);
-		//AssaParticle_ShelltomWeapon(lpCurPlayer, (DWORD)60 * 60 * 3 * 1000, 15);
+		AssaParticle_ShelltomWeapon(lpCurPlayer, (DWORD)60 * 60 * 3 * 1000, 15);
 		break;
 	case 195:
 		haCastleSkillUseFlag = 1;
 		SetUpKeepItem(nsPremiumItem::FORCE, SINITEM_TIME_3HOURS, true, UpKeepItemName[36], 1);
-		//AssaParticle_ShelltomWeapon(lpCurPlayer, (DWORD)60 * 60 * 3 * 1000, 16);
+		AssaParticle_ShelltomWeapon(lpCurPlayer, (DWORD)60 * 60 * 3 * 1000, 16);
 		break;
 	case 196:
 		haCastleSkillUseFlag = 1;
 		SetUpKeepItem(nsPremiumItem::FORCE, SINITEM_TIME_3HOURS, true, UpKeepItemName[37], 1);
-		//AssaParticle_ShelltomWeapon(lpCurPlayer, (DWORD)60 * 60 * 3 * 1000, 17);
+		AssaParticle_ShelltomWeapon(lpCurPlayer, (DWORD)60 * 60 * 3 * 1000, 17);
 		break;
 	case 197:
 		haCastleSkillUseFlag = 1;
 		SetUpKeepItem(nsPremiumItem::FORCE, SINITEM_TIME_3HOURS, true, UpKeepItemName[38], 1);
-		//AssaParticle_ShelltomWeapon(lpCurPlayer, (DWORD)60 * 60 * 3 * 1000, 18);
+		AssaParticle_ShelltomWeapon(lpCurPlayer, (DWORD)60 * 60 * 3 * 1000, 18);
 		break;
 	}
 	return TRUE;
