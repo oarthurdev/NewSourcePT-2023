@@ -4361,6 +4361,19 @@ void cINVENTORY::RButtonDown(int x, int y)
 				};
 			}
 
+			if (InvenItem[SelectInvenItemIndex - 1].sItemInfo.CODE == (sinBI3 | sin17))
+			{
+				haCastleSkillUseFlag = 1;
+			}
+
+			if (InvenItem[SelectInvenItemIndex - 1].sItemInfo.CODE == (sinBI3 | sin18)) {
+				haCastleSkillUseFlag = 1;
+			}
+
+			if (InvenItem[SelectInvenItemIndex - 1].sItemInfo.CODE == (sinBI3 | sin19)) {
+				haCastleSkillUseFlag = 1;
+			}
+
 			if (haCastleSkillUseFlag != 1)return;
 
 

@@ -3789,7 +3789,7 @@ int DrawGameState()
 					(chrOtherPlayer[cnt].smCharInfo.State == smCHAR_STATE_NPC && chrOtherPlayer[cnt].RendPoint.z < 12 * 64 * fONE) ||
 					(chrOtherPlayer[cnt].smCharInfo.Life[0] > 0 && chrOtherPlayer[cnt].smCharInfo.State == smCHAR_STATE_ENEMY && chrOtherPlayer[cnt].smCharInfo.Brood == smCHAR_MONSTER_USER) ||
 					(chrOtherPlayer[cnt].smCharInfo.ClassClan && chrOtherPlayer[cnt].smCharInfo.ClassClan == lpCurPlayer->smCharInfo.ClassClan) ||
-					(HoMsgBoxMode && chrOtherPlayer[cnt].dwClanManageBit) || chrOtherPlayer[cnt].PartyFlag || chrOtherPlayer[cnt].PlayerPvPMode)
+					(HoMsgBoxMode && chrOtherPlayer[cnt].dwClanManageBit) || chrOtherPlayer[cnt].PartyFlag || chrOtherPlayer[cnt].PlayerPvPMode || chrOtherPlayer[cnt].PlayerVip)
 				{
 					lpCharMsgSort[ChatMsgSortCnt++] = &chrOtherPlayer[cnt];
 				}
@@ -4049,6 +4049,13 @@ int DrawGameState()
 					else
 						wsprintf(clanName, "[%s]", szClanName);
 
+					if ((lpCharMsgSort[cnt]->PlayerVip))
+					{
+						DrawThreeLineMessage(lpCharMsgSort[cnt]->RendPoint.x, lpCharMsgSort[cnt]->RendRect2D.top + y,
+							"VIP", strBuff, lpCharMsgSort[cnt]->smCharInfo.szName, RGB(150, 255, 200), RGB(230, 160, 255), dwColor, lpDDS_clanMark, selectedBox, dwClanMgrBit);
+
+					}
+
 					// Char eh rei do PVP + clan
 					if (lpCharMsgSort[cnt]->PlayCursePvP)
 					{
@@ -4140,6 +4147,10 @@ int DrawGameState()
 					char message1[64] = { 0 };
 					char message2[64] = { 0 };
 					char message3[64] = { 0 };
+
+					if ((lpCharMsgSort[cnt]->PlayerVip)) {
+						DrawTwoLineMessage(lpCharMsgSort[cnt]->RendPoint.x, lpCharMsgSort[cnt]->RendRect2D.top + y, "Vip", lpCharMsgSort[cnt]->smCharInfo.szName, RGB(230, 160, 255), dwColor, lpDDS_clanMark, selectedBox, dwClanMgrBit);
+					}
 
 					// Char eh rei do PVP
 					if (lpCharMsgSort[cnt]->PlayCursePvP)

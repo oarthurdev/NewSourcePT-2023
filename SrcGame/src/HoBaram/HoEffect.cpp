@@ -12462,6 +12462,8 @@ int InitEffect()
 	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\MourningOfPreyHit.part");
 	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\AgingEffect25.part");
 
+	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\PlayerVip.part");
+
 #ifdef _EFFECT_RES_LOADING_
 	if (HoEffectResLoadingFlag)
 	{

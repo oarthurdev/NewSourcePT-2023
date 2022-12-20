@@ -66,6 +66,7 @@
 #include "CHellsGateHandler.h"
 
 #include "Priston\Login.h"
+#include "cVipHandler.h"
 
 #ifdef CHRONOS_DEV
 #include "smPacket.h"
@@ -9315,6 +9316,17 @@ int rsOpen_MonsterItemExp(smCHAR* lpChar, rsPLAYINFO* lprsPlayInfo)
 							ROLLHANDLER->CreateRoll(lpsItem, vSerials, lpChar->pX >> FLOATNS, lpChar->pY >> FLOATNS, lpChar->pZ >> FLOATNS, (STG_AREA*)lpChar->lpExt1);
 						}
 						else
+							if ((VIPHANDLER->returnVip(lprsPlayInfo) && lpsItem->ItemInfo.CODE == (sinGG1 | sin01)))
+							{
+								if (lpsItem->ItemInfo.CODE == (sinGG1 | sin01))
+								{
+									lpsItem->ItemInfo.Money -= (lpsItem->ItemInfo.Money * 20) / 100;
+									ReformItem(&lpsItem->ItemInfo);
+								}
+								rsPutItem2(lprsPlayInfo, &lpsItem->ItemInfo);
+							}
+
+						else
 						{
 							lpsItem->state = TRUE;
 							lpStgItem = ((STG_AREA*)lpChar->lpExt1)->AddItem(lpsItem, lpChar->pX >> FLOATNS, lpChar->pY >> FLOATNS, lpChar->pZ >> FLOATNS, TRUE);
@@ -9421,6 +9433,8 @@ int rsOpen_MonsterItemExp(smCHAR* lpChar, rsPLAYINFO* lprsPlayInfo)
 		if (lprsPlayInfo->Bl_RNo > 0)
 			FallRandom += 10;
 
+		if (VIPHANDLER->returnVip(lprsPlayInfo))
+			FallRandom += 5;
 
 		if (FallRandom && (rand() % 100) < FallRandom)
 		{
@@ -9502,6 +9516,17 @@ int rsOpen_MonsterItemExp(smCHAR* lpChar, rsPLAYINFO* lprsPlayInfo)
 
 						ROLLHANDLER->CreateRoll(lpsItem, vSerials, lpChar->pX >> FLOATNS, lpChar->pY >> FLOATNS, lpChar->pZ >> FLOATNS, (STG_AREA*)lpChar->lpExt1);
 					}
+					else
+						if ((VIPHANDLER->returnVip(lprsPlayInfo) && lpsItem->ItemInfo.CODE == (sinGG1 | sin01)))
+						{
+							if (lpsItem->ItemInfo.CODE == (sinGG1 | sin01))
+							{
+								lpsItem->ItemInfo.Money -= (lpsItem->ItemInfo.Money * 20) / 100;
+								ReformItem(&lpsItem->ItemInfo);
+							}
+							rsPutItem2(lprsPlayInfo, &lpsItem->ItemInfo);
+						}
+
 					else
 
 					{
@@ -9648,6 +9673,9 @@ int rsOpen_MonsterItemExp(smCHAR* lpChar, rsPLAYINFO* lprsPlayInfo)
 			{
 				ExpUp += 5;
 			}
+
+			if (VIPHANDLER->returnVip(lprsPlayInfo))
+				ExpUp += 15;
 
 			if (rsServerConfig.ExpGameTimeMode)
 			{
@@ -11444,7 +11472,11 @@ int SendUpdatePremiumItemTime(rsPLAYINFO* lpPlayInfo)
 	{
 		if (lpPlayInfo->dwPrimeItem_NextSetTime_T < dwPlayServTime)
 		{
-			cCoinShop_T.AddPlayerCoin(lpPlayInfo, 1);
+			if (VIPHANDLER->returnVip(lpPlayInfo))
+				cCoinShop_T.AddPlayerCoin(lpPlayInfo, 2);
+			else
+				cCoinShop_T.AddPlayerCoin(lpPlayInfo, 1);
+
 			cCoinShop_T.RecvGetItemCoin(lpPlayInfo);
 			lpPlayInfo->dwPrimeItem_NextSetTime_T = dwPlayServTime + 1000 * 60;
 		}
@@ -25105,6 +25137,8 @@ int RecvMessage(SocketData* pcSocketData, char* psPacket)
 
 			initialize(pcSocketData);
 
+			VIPHANDLER->IsVIp(lpPlayInfo);
+
 			Server_DebugCount = 0;
 			break;
 
@@ -26432,7 +26466,19 @@ int RecvMessage(SocketData* pcSocketData, char* psPacket)
 							lpPlayInfo->dwTime_PrimeItem_StaminaReduce = PRIME_ITEM_TIME_7D;
 							lpPlayInfo->dwPrimeItem_NextSetTime = 0;
 							rsSendGameServer_PrimeItem3(lpPlayInfo);
-						}						
+						}	
+						else if (lpTransCommandEx->WParam == (sinBI3 | sin17))
+						{
+						VIPHANDLER->InsertDB(lpPlayInfo, 1, 3);
+						}
+						else if (lpTransCommandEx->WParam == (sinBI3 | sin18))
+						{
+						VIPHANDLER->InsertDB(lpPlayInfo, 1, 7);
+						}
+						else if (lpTransCommandEx->WParam == (sinBI3 | sin19))
+						{
+						VIPHANDLER->InsertDB(lpPlayInfo, 1, 30);
+						}
 						len = 100;
 					}
 				}
@@ -27659,7 +27705,7 @@ int RecvMessage(SocketData* pcSocketData, char* psPacket)
 				}
 			}
 			//Quest Diaria
-			/*
+			
 			if (QCountKill > lpPlayInfo2->QuestDiary_Kill)
 			{
 				flag++;
@@ -27671,7 +27717,7 @@ int RecvMessage(SocketData* pcSocketData, char* psPacket)
 				if (lpPlayInfo2->lpsmSock)
 					lpPlayInfo2->lpsmSock->Send((char*)lpTransCommand, lpTransCommand->size, TRUE);
 			}
-			*/
+			
 			if (lpPlayInfo2 && lpPlayInfo2->lpsmSock)
 			{
 				if (dwPlayTime < lpPlayInfo2->KillTime || !lpPlayInfo2->KillTime)

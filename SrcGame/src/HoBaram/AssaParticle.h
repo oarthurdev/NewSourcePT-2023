@@ -1316,6 +1316,24 @@ private:
 	int			nEffectType;
 };
 
+//Efeito gm
+class AssaSkillPlayerVip : public cASSAEFFECT
+{
+public:
+	AssaSkillPlayerVip();
+	~AssaSkillPlayerVip();
+	void Start(smCHAR* character, int liveCount);
+	void Main();
+
+
+
+private:
+	int			ParticleID;
+	BOOL		MyCharacterFlag;
+
+	BOOL		EndFlag;
+};
+
 #endif
 
 

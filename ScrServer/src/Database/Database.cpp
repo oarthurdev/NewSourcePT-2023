@@ -52,6 +52,7 @@ DatabaseStructureData sDatabaseData[]
 	{ DATABASEID_SoD2DB,        "SoD2DB"          },
 	{ DATABASEID_SodDB,         "SodDB"			  },
 	{ DATABASEID_PristonDB,     "PristonDB"       },
+	{ DATABASEID_ServerDB,      "ServerDB"       },
 	{ DATABASEID_CoinShopDB,	"CoinShopDB"      },
 	{ DATABASEID_BattleEvents,  "BattleEvents"    },
 	{ DATABASEID_StartUserDB,	"StartUserDB"	  },

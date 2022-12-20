@@ -10278,3 +10278,77 @@ void AssaSkyMeteoParticle::Start(POINT3D *pCur, POINT3D *pDest, int delay, int n
 	if(GameMode != 1)
 		esPlaySound(20, 400 - int(length / 100.f));
 }
+
+AssaSkillPlayerVip::AssaSkillPlayerVip()
+{
+	ParticleID = -1;
+	MyCharacterFlag = FALSE;
+}
+
+AssaSkillPlayerVip::~AssaSkillPlayerVip()
+{
+
+}
+
+void AssaSkillPlayerVip::Start(smCHAR* character, int liveCount)
+{
+	pChar = character;
+	if (pChar == NULL)
+		return;
+	if (lpCurPlayer == pChar)
+	{
+		MyCharacterFlag = TRUE;
+	}
+
+	Posi.x = pChar->pX;
+	Posi.y = pChar->pY;
+	Posi.z = pChar->pZ;
+
+	ParticleID = g_NewParticleMgr.Start("PlayerVip", Posi);
+
+	Max_Time = liveCount * 70 + 140;
+	CODE = PLAYERVIP;
+	EndFlag = FALSE;
+}
+
+void AssaSkillPlayerVip::Main()
+{
+	if (Time == Max_Time)
+		return;
+
+	if (!g_NewParticleMgr.GetRunning(ParticleID) && EndFlag)
+		ParticleID = -1;
+
+	if (MyCharacterFlag)
+	{
+		if (lpCurPlayer != pChar)
+			pChar = lpCurPlayer;
+	}
+
+	if (ParticleID != -1)
+	{
+		if (pChar)
+		{
+			D3DXVECTOR3 charPos;
+			charPos.x = (float)(pChar->pX);
+			charPos.y = (float)(pChar->pY + 1000);
+			charPos.z = (float)(pChar->pZ);
+			g_NewParticleMgr.SetAttachPos(ParticleID, charPos);
+			g_NewParticleMgr.SetRendering(ParticleID, pChar->FlagShow);
+		}
+	}
+
+	if (EndFlag == FALSE)
+	{
+		if (Time > Max_Time - 140)
+		{
+			Time = Max_Time - 140;
+			if (ParticleID != -1)
+			{
+				g_NewParticleMgr.SetFastStop(ParticleID);
+
+			}
+			EndFlag = TRUE;
+		}
+	}
+}

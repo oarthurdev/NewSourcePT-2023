@@ -355,6 +355,10 @@ int main(int argv, char* argc[])
 	CreateSQLConnection(DATABASEID_PristonDB);
 	cout << "Conectado com sucesso" << endl;
 
+	cout << "Conectando-se ao Banco de Dados: ServerDB" << endl;
+	CreateSQLConnection(DATABASEID_ServerDB);
+	cout << "Conectado com sucesso" << endl;
+
 	//cout << "Conectando-se ao Banco de Dados: PT" << endl;
 	//CreateSQLConnection(DATABASEID_Priston);
 	//cout << "Conectado com sucesso" << endl;

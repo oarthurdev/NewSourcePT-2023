@@ -192,6 +192,7 @@
     <ClCompile Include="cSkinChanger.cpp" />
     <ClCompile Include="cSorteio.cpp" />
     <ClCompile Include="CurseFilter.cpp" />
+    <ClCompile Include="cVipHandler.cpp" />
     <ClCompile Include="Damage.cpp" />
     <ClCompile Include="Database\Database.cpp" />
     <ClCompile Include="Drawsub.cpp" />
@@ -388,6 +389,7 @@
     <ClInclude Include="cSkinChanger.h" />
     <ClInclude Include="cSorteio.h" />
     <ClInclude Include="CurseFilter.h" />
+    <ClInclude Include="cVipHandler.h" />
     <ClInclude Include="damage.h" />
     <ClInclude Include="Database\Database.h" />
     <ClInclude Include="drawsub.h" />

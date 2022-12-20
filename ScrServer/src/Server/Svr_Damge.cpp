@@ -828,6 +828,11 @@ int rsRecvAttackData_Old(rsPLAYINFO *lpPlayInfo, TRANS_ATTACKDATA *lpTransAttack
 					{
 						SendOpenBattleArena(lpsmSock);
 					}
+
+					if (lpChar->smMonsterInfo.QuestDiary)
+					{
+						SendProgressDiary(lpPlayInfo);
+					}
 				}
 			}
 

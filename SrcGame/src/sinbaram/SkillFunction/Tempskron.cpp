@@ -140,7 +140,7 @@ void CheckContinueSkill()
 				ContinueSkill[i].CODE != BOOSTER_ITEM_LIFE && ContinueSkill[i].CODE != BOOSTER_ITEM_MANA && ContinueSkill[i].CODE != BOOSTER_ITEM_STAMINA &&
 				ContinueSkill[i].CODE != PLAYER_VIP && ContinueSkill[i].CODE != DELAY_GLOBAL /* && ContinueSkill[i].CODE != PLAYER_ARENA*/ && ContinueSkill[i].CODE != BATTLE_LEVEL && ContinueSkill[i].CODE != QUEST_DIARY && ContinueSkill[i].CODE != SOD_SKILL_GOLD && ContinueSkill[i].CODE != SOD_SKILL_SILVER && ContinueSkill[i].CODE != SOD_SKILL_BRONZE && ContinueSkill[i].CODE != REIPVP &&
 				 ContinueSkill[i].CODE != BC_SKILL_SILVER && ContinueSkill[i].CODE != BC_SKILL_BRONZE && ContinueSkill[i].CODE != DELAY_GLOBAL && ContinueSkill[i].CODE != PLAYER_VIP &&
-				ContinueSkill[i].CODE != HIGH_LEVEL_MERIT_SKILL && ContinueSkill[i].CODE != BUFF_WARMODE))
+				ContinueSkill[i].CODE != HIGH_LEVEL_MERIT_SKILL && ContinueSkill[i].CODE != BUFF_WARMODE && ContinueSkill[i].CODE != PLAYERVIP))
 			{
 				ContinueSkill[i].CheckTime = ContinueSkill[i].UseTime * 70;
 			}
@@ -149,7 +149,7 @@ void CheckContinueSkill()
 				&& CHANGE_JOB3_QUEST != ContinueSkill[i].CODE &&ContinueSkill[i].CODE != CHANGE_ELEMENTARY_QUEST&& ContinueSkill[i].CODE != CLANSKILL_ATTACK && ContinueSkill[i].CODE != CLANSKILL_EVASION && ContinueSkill[i].CODE != CLANSKILL_ABSORB&&
 				ContinueSkill[i].CODE != SCROLL_P_CRITICAL && ContinueSkill[i].CODE != SCROLL_P_EVASION &&
 				ContinueSkill[i].CODE != BC_SKILL_SILVER && ContinueSkill[i].CODE != BC_SKILL_BRONZE && ContinueSkill[i].CODE != BOOSTER_ITEM_LIFE && ContinueSkill[i].CODE != BOOSTER_ITEM_MANA && ContinueSkill[i].CODE != BOOSTER_ITEM_STAMINA && ContinueSkill[i].CODE != SOD_SKILL_GOLD && ContinueSkill[i].CODE != SOD_SKILL_SILVER && ContinueSkill[i].CODE != SOD_SKILL_BRONZE && ContinueSkill[i].CODE != PLAYER_VIP && ContinueSkill[i].CODE != DELAY_GLOBAL /*&& ContinueSkill[i].CODE != PLAYER_ARENA*/ && ContinueSkill[i].CODE != BATTLE_LEVEL && ContinueSkill[i].CODE != QUEST_DIARY &&
-				ContinueSkill[i].CODE != HIGH_LEVEL_MERIT_SKILL && ContinueSkill[i].CODE != REIPVP && ContinueSkill[i].CODE != BUFF_WARMODE)
+				ContinueSkill[i].CODE != HIGH_LEVEL_MERIT_SKILL && ContinueSkill[i].CODE != REIPVP && ContinueSkill[i].CODE != BUFF_WARMODE && ContinueSkill[i].CODE != PLAYERVIP)
 			{
 				if(lpCurPlayer->OnStageField >= 0 && StageField[lpCurPlayer->OnStageField]->State == FIELD_STATE_VILLAGE)
 				{
@@ -304,6 +304,11 @@ void CheckContinueSkill()
 					cInvenTory.SetItemToChar();
 					break;
 				case BUFF_WARMODE:
+					ContinueSkill[i].PlusState[0] = 0;
+					cInvenTory.SetItemToChar();
+					break;
+
+				case PLAYERVIP:
 					ContinueSkill[i].PlusState[0] = 0;
 					cInvenTory.SetItemToChar();
 					break;

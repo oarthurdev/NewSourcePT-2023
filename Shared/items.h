@@ -1120,6 +1120,11 @@
 	{ sinBI3 | sin11, "Aging Packet +19", "CX111", ITEMSIZE * 2, ITEMSIZE * 2, "Premium", ITEM_CLASS_ECORE, "CX111", 0, SIN_SOUND_Armlet },
 	{ sinBI3 | sin12, "Aging Packet +20", "CX112", ITEMSIZE * 2, ITEMSIZE * 2, "Premium", ITEM_CLASS_ECORE, "CX112", 0, SIN_SOUND_Armlet },
 
+		//vip
+	{ sinBI3 | sin17, "Vip", "bi304", ITEMSIZE * 2, ITEMSIZE * 2, "Premium", ITEM_CLASS_ECORE, "bi304", 0, SIN_SOUND_Armlet },
+	{ sinBI3 | sin18, "Vip", "bi305", ITEMSIZE * 2, ITEMSIZE * 2, "Premium", ITEM_CLASS_ECORE, "bi305", 0, SIN_SOUND_Armlet },
+	{ sinBI3 | sin19, "Vip", "bi306", ITEMSIZE * 2, ITEMSIZE * 2, "Premium", ITEM_CLASS_ECORE, "bi306", 0, SIN_SOUND_Armlet },
+
 	{ sinBI3 | sin20 ,"Caravan" ,"BI320",ITEMSIZE * 2,ITEMSIZE * 2,"Premium",ITEM_CLASS_ECORE,"BI320",0,SIN_SOUND_POTION },
 	{ sinBI3 | sin21 ,"Caravan" ,"BI321",ITEMSIZE * 2,ITEMSIZE * 2,"Premium",ITEM_CLASS_ECORE,"BI321",0,SIN_SOUND_POTION },
 
@@ -1153,7 +1158,6 @@
 	{ sinBI4 | sin95 ,"Força Ira" ,"BI495",ITEMSIZE * 1,ITEMSIZE * 1,"Premium",ITEM_CLASS_ECORE,"BI495",0,SIN_SOUND_POTION },
 	{ sinBI4 | sin96 ,"Força Tera" ,"BI496",ITEMSIZE * 1,ITEMSIZE * 1,"Premium",ITEM_CLASS_ECORE,"BI496",0,SIN_SOUND_POTION },
 	{ sinBI4 | sin97 ,"Força Guardiã" ,"BI497",ITEMSIZE * 1,ITEMSIZE * 1,"Premium",ITEM_CLASS_ECORE,"BI497",0,SIN_SOUND_POTION },
-
 
 		//Quebra Cabeça
 	{ sinPZ1 | sin00 ,"Item" ,"PZ100",ITEMSIZE * 2,ITEMSIZE * 2,"Event",ITEM_CLASS_ECORE,"PZ100",0,SIN_SOUND_Armlet },

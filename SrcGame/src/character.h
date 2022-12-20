@@ -727,6 +727,7 @@ public:
 	int PlayerPvPMode;
 	int PlayGladiador;
 	int BattleLevel;
+	int PlayerVip;
 
 
 	BOOL Player_Rei_PVP_Effect = false;

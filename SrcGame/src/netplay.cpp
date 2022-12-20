@@ -3172,6 +3172,35 @@ int rsTRANS_SERVER::RecvMessage(SocketData* pcSocketData, char* psPacket)
 	//	break;
 	//}
 
+	case OpCode::OPCODE_VIP:
+	{
+		smTRANS_VIP* smTransCommand = (smTRANS_VIP*)psPacket;
+
+		//lpCurPlayer->sBlessCastle_Damage[1] = smTransCommand->WParam;
+
+		if (smTransCommand->Ativo)
+		{
+			sSKILL haVIP;
+
+			//PlayerGM = TRUE;
+			lpCurPlayer->PlayerVip = TRUE;
+
+			for (int j = 0; j < SIN_MAX_SKILL; j++)
+			{
+				if (sSkill[j].CODE == PLAYERVIP)
+				{
+					memcpy(&haVIP, &sSkill[j], sizeof(sSKILL));
+					haVIP.UseTime = 604800;
+					sinContinueSkillSet(&haVIP);
+
+					lpCurPlayer->PlayerVip = TRUE;
+					break;
+				}
+			}
+		}
+		break;
+	}
+
 	case OpCode::START_CARAVAN:
 		lpTransCommand = (smTRANS_COMMAND*)psPacket;
 
@@ -6423,6 +6452,44 @@ int SendChatMessageToServer(char* szChatMessage)
 
 		}
 
+		len = rsCompString("/comandos", szMessage);
+		if (len)
+		{
+			if (lpCurPlayer->PlayerVip > 0)
+			{
+				AddChatBuff("/vip para ir para Eragon Cave", 0);
+				AddChatBuff("/ric Para Teletransportar em Ricartem", 0);
+				AddChatBuff("/pillai Para Teletransportar em Pillai", 0);
+				AddChatBuff("/bc Para Teletransportar em Bless Castle", 0);
+				AddChatBuff("/core para abrir o Core azul ", 0);
+				//	AddChatBuff("Ctrl + F para abrir ferreiro", 0);
+				AddChatBuff("Exp up + 15% , 5% Drop", 0);
+				//AddChatBuff("Aging Free", 0);
+				AddChatBuff("Time shop x2 por minuto", 0);
+				//	AddChatBuff("Ressurreição por 30D >PVE<", 0);
+			}
+
+		}
+
+		if (lpCurPlayer->PlayerVip > 0)
+		{
+			len = rsCompString("/vip", szMessage);
+			if (len) WarpField2(52);
+
+			len = rsCompString("/ric", szMessage);
+			if (len) WarpField2(3);
+
+			len = rsCompString("/pillai", szMessage);
+			if (len) WarpField2(21);
+
+			len = rsCompString("/bc", szMessage);
+			if (len) WarpField2(33);
+
+			len = rsCompString("/core", szMessage);
+			if (len)  TCORE::GetInstance()->tcoreOpen();
+
+
+		}
 
 #ifdef	_WINMODE_DEBUG
 		int num;

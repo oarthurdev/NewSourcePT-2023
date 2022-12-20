@@ -4192,7 +4192,7 @@ int rsLoadServerForce(rsPLAYINFO *lpPlayInfo, sGAME_SAVE_INFO *lpGameSaveInfo)
 	if (lpPlayInfo->lpsmSock)
 		lpPlayInfo->lpsmSock->Send((char *)&packet, packet.size, TRUE);
 
-	/*
+	
 	if (lpGameSaveInfo->QuestDiary_State > 0)
 		lpPlayInfo->QuestDiary_State = lpGameSaveInfo->QuestDiary_State;
 	else
@@ -4210,7 +4210,7 @@ int rsLoadServerForce(rsPLAYINFO *lpPlayInfo, sGAME_SAVE_INFO *lpGameSaveInfo)
 	packet.SParam = QCountKill;
 	if (lpPlayInfo->lpsmSock)
 		lpPlayInfo->lpsmSock->Send((char*)& packet, packet.size, TRUE);
-		*/
+		
 
 
 	PACKET_CROWN packetc;
@@ -4455,7 +4455,7 @@ int rsSaveServerForce(rsPLAYINFO *lpPlayInfo, sGAME_SAVE_INFO *lpGameSaveInfo)
 	else
 		lpGameSaveInfo->BattleExp = 0;
 //Desafio Diario
-	/*
+	
 	if (lpPlayInfo->QuestDiary_State)
 		lpGameSaveInfo->QuestDiary_State = lpPlayInfo->QuestDiary_State;
 	else
@@ -4465,7 +4465,7 @@ int rsSaveServerForce(rsPLAYINFO *lpPlayInfo, sGAME_SAVE_INFO *lpGameSaveInfo)
 		lpGameSaveInfo->QuestDiary_Kill = lpPlayInfo->QuestDiary_Kill;
 	else
 		lpGameSaveInfo->QuestDiary_Kill = 0;
-	*/
+	
 
 	return TRUE;
 }

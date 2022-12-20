@@ -389,6 +389,7 @@ sSKILL sSkill[SIN_MAX_SKILL] = {
 { "Elixir da Gloria", ELIXIR_GLORIA, "", "ElixirGloria.tga" },
 	{ "Top Ranking", HIGH_LEVEL_MERIT_SKILL, "", "highlevelmerit.tga" },
 { "Modo PvP Ativo", BUFF_WARMODE, "", "battle.tga" },
+	{ "Vip", PLAYERVIP, "", "VIP.tga" },
 };
 
 
@@ -2245,7 +2246,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			pSkill->CODE == SCROLL_P_INVULNERABILITY || pSkill->CODE == SCROLL_P_CRITICAL || pSkill->CODE == SCROLL_P_EVASION ||
 			pSkill->CODE == BOOSTER_ITEM_LIFE || pSkill->CODE == BOOSTER_ITEM_MANA || pSkill->CODE == BOOSTER_ITEM_STAMINA || pSkill->CODE == HIGH_LEVEL_MERIT_SKILL || pSkill->CODE == REIPVP ||
 			pSkill->CODE == BC_SKILL_SILVER || pSkill->CODE == BC_SKILL_BRONZE ||  pSkill->CODE == PLAYER_VIP || pSkill->CODE == DELAY_GLOBAL || 
-			/*pSkill->CODE == PLAYER_ARENA ||*/ pSkill->CODE == QUEST_DIARY || pSkill->CODE == ELIXIR_IRA || pSkill->CODE == ELIXIR_GLORIA || pSkill->CODE == BUFF_WARMODE)
+			/*pSkill->CODE == PLAYER_ARENA ||*/ pSkill->CODE == QUEST_DIARY || pSkill->CODE == ELIXIR_IRA || pSkill->CODE == ELIXIR_GLORIA || pSkill->CODE == BUFF_WARMODE || pSkill->CODE == PLAYERVIP)
 		{
 			wsprintf(szSkillInfoBuff, "%s\r", pSkill->Skill_Info.SkillName);
 		}
@@ -2434,6 +2435,16 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 	lstrcat(szSkillInfoBuff, "+ 150 de vida\r");
 
 	LineCount = 2;
+	}
+
+	else if (pSkill->CODE == PLAYERVIP)
+	{
+	// ID
+	lstrcpy(szSkillInfoBuff, "Vip\r");
+	lstrcat(szSkillInfoBuff2, "\r");
+	lstrcat(szSkillInfoBuff, "/comandos para ver os beneficios\r");
+
+	LineCount = 3;
 	}
 
 	lstrcat(szSkillInfoBuff, "\r");

@@ -1403,6 +1403,7 @@ smCHAR::smCHAR()
 	PlayerPvPMode = 0;
 	PlayerGm = 0;
 	dwTopRankUserEffectTime = 0;
+	PlayerVip = 0;
 
 	Init();
 }
@@ -1646,6 +1647,7 @@ void smCHAR::Init()
 	PlayerGm = 0;
 	PlayGladiador = 0;
 	PlayerPvPMode = 0;
+	PlayerVip = 0;
 
 #ifndef _W_SERVER
 
@@ -8825,6 +8827,11 @@ int smCHAR::Draw()
 			/*Effect_ReiPvP(lpCurPlayer);*/
 	}
 
+	if (PlayerVip)
+	{
+		AssaSkill_PlayerVip(this, 5);
+	}
+
 	////Top Level efeito em particulas
 	//if (PlayCurseTopLevel /*&& RendSucess && RendPoint.z < 24 * 64 * fONE */&& PlayVanish <= 0)
 	//{
@@ -11876,6 +11883,7 @@ int smCHAR::RecvPlayData2(char *lpData)
 		//PlayCurseTopLevel = 0;
 		PlayerPvPMode = 0;
 		PlayGladiador = 0;
+		PlayerVip = 0;
 
 		if (lpTransPlayData->bEventInfo[TRANS_PLAYDATA_EVENT_EXT])
 		{
@@ -11953,6 +11961,10 @@ int smCHAR::RecvPlayData2(char *lpData)
 						StopAssaCodeEffect(this, REIPVP);
 					break;
 					
+				case OpCode::OPCODE_EFFECT_VIP:
+					PlayerVip = 1;
+					break;
+
 				case OpCode::OPCODE_EFFECT_VANISH:
 					PlayVanish = ((smEFFECT_ITEM *)lpBuff)->dwItemCode;
 					PlayVague = ((smEFFECT_ITEM *)lpBuff)->ColorBlink;
@@ -12667,6 +12679,21 @@ int smCHAR::MakeTransPlayData(char *lpTargetBuff, int SendTime, int pBuffStep)
 		lpEffectItem->code = OpCode::OPCODE_EFFECT_CURSE_QUEST;
 		lpEffectItem->size = sizeof(smEFFECT_ITEM);
 		lpEffectItem->dwItemCode = PlayCurseQuest;
+		lpEffectItem->ColorBlink = 0;
+		ZeroMemory(lpEffectItem->sColors, sizeof(short) * 4);
+		lpEffectItem->DispEffect = 0;
+		lpEffectItem->BlinkScale = 0;
+
+		lpTransPlayData->size += lpEffectItem->size;
+		lpTransPlayData->bEventInfo[TRANS_PLAYDATA_EVENT_EXT] ++;
+		lpEffectItem++;
+	}
+
+	if (PlayerVip && Life > 0)
+	{
+		lpEffectItem->code = OpCode::OPCODE_EFFECT_VIP;
+		lpEffectItem->size = sizeof(smEFFECT_ITEM);
+		lpEffectItem->dwItemCode = PlayerVip;
 		lpEffectItem->ColorBlink = 0;
 		ZeroMemory(lpEffectItem->sColors, sizeof(short) * 4);
 		lpEffectItem->DispEffect = 0;

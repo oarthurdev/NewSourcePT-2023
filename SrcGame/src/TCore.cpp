@@ -964,9 +964,12 @@ bool TCORE::MouseIn() {
 			tcoreClose();
 			stop = FALSE;
 			//sinThrowItemToFeild(&cInvenTory.InvenItem[chaPremiumitem.TelePortCore.ItemIndex]);
-			cInvenTory.InvenItem[chaPremiumitem.TelePortCore.ItemIndex].Flag = 0;
-			cInvenTory.CheckWeight();
-			cInvenTory.ReFormInvenItem();
+			if (lpCurPlayer->PlayerVip <= 0)
+			{
+				cInvenTory.InvenItem[chaPremiumitem.TelePortCore.ItemIndex].Flag = 0;
+				cInvenTory.CheckWeight();
+				cInvenTory.ReFormInvenItem();
+			}
 		}
 
 	}

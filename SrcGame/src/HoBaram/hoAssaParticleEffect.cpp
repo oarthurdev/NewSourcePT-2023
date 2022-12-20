@@ -6180,3 +6180,32 @@ void AssaSkillTopPvP(smCHAR* pDestChar, int liveCount)
 		cAssaEffect[i] = TopPvP;
 	}
 }
+
+void AssaSkill_PlayerVip(smCHAR* pDestChar, int liveCount)
+{
+
+	if (AddAssaCodeEffectTime(pDestChar, PLAYERVIP, liveCount * 70 + 140) == false)
+	{
+		POINT3D charPos;
+		charPos.x = pDestChar->pX;
+		charPos.y = pDestChar->pY;
+		charPos.z = pDestChar->pZ;
+
+		Assa = SetAssaEffect(0, "WarMode.ASE", 0, &charPos, 0, 0);
+		cAssaEffect[Assa]->Time = -60;
+		cAssaEffect[Assa]->AniMaxCount = 20;
+		cAssaEffect[Assa]->AniDelayTime = 6;
+		cAssaEffect[Assa]->MOVECODE = ASSA_CHAR_POSI;
+		cAssaEffect[Assa]->pChar = pDestChar;
+
+		cAssaEffect[Assa]->Temp[8] = 1;
+		cAssaEffect[Assa]->TempPosi.x = 0;
+		cAssaEffect[Assa]->TempPosi.y = 1000;
+		cAssaEffect[Assa]->TempPosi.z = 0;
+
+		int i = GetAssaEffect();
+		AssaSkillPlayerVip* Playervip = new AssaSkillPlayerVip;
+		Playervip->Start(pDestChar, liveCount);
+		cAssaEffect[i] = Playervip;
+	}
+}

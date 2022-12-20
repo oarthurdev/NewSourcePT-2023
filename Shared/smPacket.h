@@ -341,6 +341,8 @@ enum OpCode
 	OPCODE_SKINCHANGE,
 	OPCODE_ROLL,
 	OPCODE_ENDROLL,
+	OPCODE_VIP,
+	OPCODE_EFFECT_VIP,
 	MSG_PING,
 		OPCODE_OPEN_BATTLE_EVENT,
 		OPCODE_HG_NEXT_STAGE,
@@ -352,7 +354,6 @@ enum OpCode
 		OPCODE_SEND_SORTEIO_ITENS,
 		OPCODE_RECVKEYS_SORTEIO_ITENS,
 };
-
 
 #define smTRANSCODE_CURRENT_MANA  0x70000024
 #define smTRANSCODE_PARTY_MODE  0x70000025
@@ -379,6 +380,24 @@ enum OpCode
 
 #define PACKET_SEND_VIP 0x49470003
 
+struct smTRANS_VIP
+{
+	int size, code;
+
+	int Ativo;
+	int Vip;
+	DWORD dwTopSerial;
+	smTRANS_VIP()
+	{
+		size = 0;
+		code = 0;
+
+		Ativo = 0;
+		Vip = 0;
+		dwTopSerial = 0;
+	}
+
+};
 
 struct sCOMPRESSED
 {

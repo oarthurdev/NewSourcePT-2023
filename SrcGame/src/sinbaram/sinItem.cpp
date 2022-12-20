@@ -3854,6 +3854,26 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 		ItemInfoCol++;
 	}
 
+	if (pItem->CODE == (sinBI3 | sin17) || pItem->CODE == (sinBI3 | sin18) || pItem->CODE == (sinBI3 | sin19))
+	{
+		lstrcpy(szTemp, "\r");
+		lstrcat(szInfoBuff, szTemp);
+		lstrcpy(szTemp2, "\r");
+		lstrcat(szInfoBuff2, szTemp2);
+		ItemInfoCol++;
+
+		lstrcpy(szTemp, "Vip\r");
+		lstrcat(szInfoBuff, szTemp);
+		lstrcpy(szTemp2, "\r");
+		lstrcat(szInfoBuff2, szTemp2);
+		ItemInfoCol++;
+		lstrcpy(szTemp, "Com varios beneficios\r");
+		lstrcat(szInfoBuff, szTemp);
+		lstrcpy(szTemp2, "\r");
+		lstrcat(szInfoBuff2, szTemp2);
+		ItemInfoCol++;
+	}
+
 	if (pItem->CODE == (sinBI1 | sin23)) {
 		lstrcpy(szTemp, "\r");
 		lstrcat(szInfoBuff, szTemp);
