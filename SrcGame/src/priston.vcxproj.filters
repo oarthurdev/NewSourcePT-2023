@@ -258,6 +258,7 @@
     <ClCompile Include="BattleEvents\CRollHandler.cpp" />
     <ClCompile Include="BattleEvents\CRollWindow.cpp" />
     <ClCompile Include="cSorteio.cpp" />
+    <ClCompile Include="cTarget.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\framework\File\File.h" />
@@ -596,6 +597,7 @@
     <ClInclude Include="BattleEvents\CRollHandler.h" />
     <ClInclude Include="BattleEvents\CRollWindow.h" />
     <ClInclude Include="cSorteio.h" />
+    <ClInclude Include="cTarget.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resources\Script1.rc" />

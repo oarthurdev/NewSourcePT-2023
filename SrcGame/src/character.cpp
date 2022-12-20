@@ -8816,6 +8816,15 @@ int smCHAR::Draw()
 		smRender.Color_B += 100;
 	}
 
+	if (PlayCursePvP)
+	{
+		EffectPVP(this);
+		/*	smRender.Color_R += 220;
+			smRender.Color_G += 0;
+			smRender.Color_B += 40;
+			/*Effect_ReiPvP(lpCurPlayer);*/
+	}
+
 	////Top Level efeito em particulas
 	//if (PlayCurseTopLevel /*&& RendSucess && RendPoint.z < 24 * 64 * fONE */&& PlayVanish <= 0)
 	//{

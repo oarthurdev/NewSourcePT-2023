@@ -6025,6 +6025,81 @@ void AssaSkillModoPvP::Main()
 	}
 }
 
+AssaSkillTopPvPEfect::AssaSkillTopPvPEfect()
+{
+	ParticleID = -1;
+	MyCharacterFlag = FALSE;
+}
+
+AssaSkillTopPvPEfect::~AssaSkillTopPvPEfect()
+{
+
+}
+
+void AssaSkillTopPvPEfect::Start(smCHAR* character, int liveCount)
+{
+	pChar = character;
+	if (pChar == NULL)
+		return;
+	if (lpCurPlayer == pChar)
+	{
+		MyCharacterFlag = TRUE;
+	}
+
+	Posi.x = pChar->pX;
+	Posi.y = pChar->pY;
+	Posi.z = pChar->pZ;
+
+	ParticleID = g_NewParticleMgr.Start("toppvp", Posi);
+
+
+	Max_Time = liveCount * 70 + 140;
+	CODE = REIPVP;
+	EndFlag = FALSE;
+}
+
+void AssaSkillTopPvPEfect::Main()
+{
+	if (Time == Max_Time)
+		return;
+
+	if (!g_NewParticleMgr.GetRunning(ParticleID) && EndFlag)
+		ParticleID = -1;
+
+	if (MyCharacterFlag)
+	{
+		if (lpCurPlayer != pChar)
+			pChar = lpCurPlayer;
+	}
+
+	if (ParticleID != -1)
+	{
+		if (pChar)
+		{
+			D3DXVECTOR3 charPos;
+			charPos.x = (float)(pChar->pX);
+			charPos.y = (float)(pChar->pY);
+			charPos.z = (float)(pChar->pZ);
+			g_NewParticleMgr.SetAttachPos(ParticleID, charPos);
+			g_NewParticleMgr.SetRendering(ParticleID, pChar->FlagShow);
+		}
+	}
+
+	if (EndFlag == FALSE)
+	{
+		if (Time > Max_Time - 140)
+		{
+			Time = Max_Time - 140;
+			if (ParticleID != -1)
+			{
+				g_NewParticleMgr.SetFastStop(ParticleID);
+
+			}
+			EndFlag = TRUE;
+		}
+	}
+
+}
 
 
 AssaSkillTriumphOfValhallaPart::AssaSkillTriumphOfValhallaPart()
@@ -9279,54 +9354,50 @@ void AssaShelltomUpWeapon2::Start(smCHAR *pCharacter, int timeCount, int shellTo
 		Face.g = 255;
 		Face.b = 255;
 	}
-
 	else if (shellTomCode == 12)
 	{
-		Face.r = 255;
-		Face.g = 255;
-		Face.b = 255;
+		Face.r = 180;
+		Face.g = 50;
+		Face.b = 120;
 	}
-
 	else if (shellTomCode == 13)
 	{
 		Face.r = 255;
 		Face.g = 255;
-		Face.b = 255;
+		Face.b = 0;
 	}
-
 	else if (shellTomCode == 14)
 	{
-		Face.r = 255;
-		Face.g = 255;
+		Face.r = 0;
+		Face.g = 150;
 		Face.b = 255;
 	}
-
 	else if (shellTomCode == 15)
 	{
-		Face.r = 255;
-		Face.g = 255;
+		Face.r = 0;
+		Face.g = 150;
 		Face.b = 255;
 	}
 
 	else if (shellTomCode == 16)
 	{
-	Face.r = 255;
-	Face.g = 255;
-	Face.b = 255;
+		Face.r = 0;
+		Face.g = 209;
+		Face.b = 63;
 	}
 
 	else if (shellTomCode == 17)
 	{
-	Face.r = 255;
-	Face.g = 255;
-	Face.b = 255;
+		Face.r = 255;
+		Face.g = 155;
+		Face.b = 6;
 	}
 
 	else if (shellTomCode == 18)
 	{
-	Face.r = 252;
-	Face.g = 77;
-	Face.b = 77;
+		Face.r = 255;
+		Face.g = 0;
+		Face.b = 0;
 	}
 
 	else if (shellTomCode == 50) //이니그마

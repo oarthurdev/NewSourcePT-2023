@@ -1,31 +1,4 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#define	GAME_GM
 
 #define	_LANGUAGE_BRAZIL
 #define	_LANGUAGE_BRAZIL_FIELDLEVEL

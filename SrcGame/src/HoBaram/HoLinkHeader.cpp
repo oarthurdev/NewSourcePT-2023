@@ -451,6 +451,7 @@ extern int ClanCLCharMove;
 
 #include "CoinShop.h"
 #include "CoinShop_T.h"
+#include "cTarget.h"
 #include "cSettingsWindow.h"
 #include "..\\cSkinChanger.h"
 #include "BattleEvents\\CRollHandler.h"
@@ -462,7 +463,7 @@ BOOL HoStopCharMotion()
 	if (ROLLHANDLER->isInsideRoll())
 		return TRUE;
 	
-	if (cCoinShop.isOpen()  || stop || cSettings.isOpen() || Sorteio->isOpen() || cCoinShop_T.isOpen() || cSkinChanger.isOpen() )
+	if (cCoinShop.isOpen()  || stop || cSettings.isOpen() || cTarget.StopMotion() || Sorteio->isOpen() || cCoinShop_T.isOpen() || cSkinChanger.isOpen() )
 		return TRUE;
 
 	if (cRestaure.OpenFlag)

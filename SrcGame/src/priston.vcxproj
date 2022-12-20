@@ -256,6 +256,7 @@
     <ClCompile Include="CoinShop.cpp" />
     <ClCompile Include="cSkinChanger.cpp" />
     <ClCompile Include="cSorteio.cpp" />
+    <ClCompile Include="cTarget.cpp" />
     <ClCompile Include="CurseFilter.cpp" />
     <ClCompile Include="Damage.cpp" />
     <ClCompile Include="Drawsub.cpp" />
@@ -519,6 +520,7 @@
     <ClInclude Include="cSettingsWindow.h" />
     <ClInclude Include="cSkinChanger.h" />
     <ClInclude Include="cSorteio.h" />
+    <ClInclude Include="cTarget.h" />
     <ClInclude Include="CurseFilter.h" />
     <ClInclude Include="damage.h" />
     <ClInclude Include="def.h" />

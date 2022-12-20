@@ -4519,6 +4519,7 @@ int DrawClanMark_EachBox(LPDIRECT3DTEXTURE9 clanMark, int x, int y)
 	return TRUE;
 }
 
+#include "cTarget.h"
 #include "CoinShop.h"
 
 
@@ -4547,24 +4548,27 @@ int DrawEachPlayer(float fx, float fy, int SizeMode)
 
 
 
-		mx = MidX;
-		my = MidY;
-
-		MidX = (int)((float)WinSizeX * fx);
-		MidY = (int)((float)WinSizeY * fy);
-
-		int chrHeight;
-
-		if (chrEachPlayer.smCharInfo.State <= TRUE)
-			chrHeight = chrEachPlayer.PatHeight - 8 * fONE;
-		else
-			chrHeight = chrEachPlayer.PatHeight;
-
-		if (SizeMode)
+		if (!SizeMode)
 		{
+			cTarget.Draw(chrEachMaster);
+		}
+		else
+		{
+			mx = MidX;
+			my = MidY;
+
+			MidX = (int)((float)WinSizeX * fx);
+			MidY = (int)((float)WinSizeY * fy);
+
+			int chrHeight;
+
+			if (chrEachPlayer.smCharInfo.State <= TRUE)
+				chrHeight = chrEachPlayer.PatHeight - 8 * fONE;
+			else
+				chrHeight = chrEachPlayer.PatHeight;
 
 			h = (int)((float)WinSizeY / 2);
-			w = (int)((float)WinSizeY*1.34f / 4);
+			w = (int)((float)WinSizeY * 1.34f / 4);
 
 			w += 20;
 			h += 20;
@@ -4574,30 +4578,12 @@ int DrawEachPlayer(float fx, float fy, int SizeMode)
 
 			dist = 30 * fONE;
 			he = -1 * fONE;
-		}
-		else
-		{
 
-			h = (int)((float)WinSizeY / 6);
-			w = (int)((float)WinSizeY*1.34f / 8);
-
-			w += 10;
-			h += 10;
-
-			smRender.SMSHIFT_PERSPECTIVE_WIDTH = RENDCLIP_DEFAULT_SHIFT_PERSPECTIVE_WIDTH * 4;
-
-			smRender.SMMULT_PERSPECTIVE_HEIGHT = (int)(RENDCLIP_DEFAULT_MULT_PERSPECTIVE_HEIGHT + 25.6f) * 6;
-
-			dist = 100 * fONE;
-			he = 3 * fONE;
-		}
-
-		dist += EachCameraPos.y;
+			dist += EachCameraPos.y;
 
 
 			if (MatEachBox >= 0)
 			{
-				//GRAPHICDEVICE->BeginScene();
 
 				dsDrawTexImage(MatEachBox, MidX - (w >> 1), MidY - (h >> 1), w, h, 255, 0);//Background da animação do npc
 
@@ -4653,10 +4639,9 @@ int DrawEachPlayer(float fx, float fy, int SizeMode)
 
 				}
 
-				//GRAPHICDEVICE->EndScene();
 			}
 
-			GRAPHICDEVICE->Clear(0, 0, 2, smBackColor, 1.0f, 0);
+			GRAPHICENGINE->GetDevice()->Clear(0, 0, 2, smBackColor, 1.0f, 0);
 
 			smCHAR_SetCameraPosi(EachCameraPos.x, EachCameraPos.y + he, dist + EachCameraPos.z, 0, ANGLE_180, 0);
 
@@ -4693,10 +4678,8 @@ int DrawEachPlayer(float fx, float fy, int SizeMode)
 
 				if (!SizeMode && chrEachMaster->smCharInfo.State && !EachTradeButton)
 				{
-					//GRAPHICDEVICE->BeginScene();
 
 					chrEachMaster->DrawStateBar(MidX - (w >> 1) + 5, MidY - (h >> 1) + h + 2);
-					//GRAPHICDEVICE->EndScene();
 
 				}
 
@@ -4719,9 +4702,8 @@ int DrawEachPlayer(float fx, float fy, int SizeMode)
 
 				if (!SizeMode && chrEachMaster->smCharInfo.State)
 				{
-					//GRAPHICDEVICE->BeginScene();
+
 					chrEachMaster->DrawStateBar(MidX - (w >> 1) + 5, MidY - (h >> 1) + h + 2);
-					//GRAPHICDEVICE->EndScene();
 
 				}
 			}
@@ -4745,9 +4727,6 @@ int DrawEachPlayer(float fx, float fy, int SizeMode)
 						strcpy_s(chrEachPlayer.szChatMessage, chrEachMaster->szChatMessage);
 				}
 
-				//GRAPHICDEVICE->lpDDSBack->GetDC(&hdc);
-				//SelectObject(hdc, hFont);
-				//SetBkMode(hdc, TRANSPARENT);
 
 				len = lstrlen(chrEachPlayer.smCharInfo.szName);
 				dist = len >> 1;
@@ -4757,15 +4736,14 @@ int DrawEachPlayer(float fx, float fy, int SizeMode)
 				SIZE sizecheck;
 				sizecheck.cx = 0;
 				sizecheck.cy = 0;
-				GetFontTextExtentPoint(0, chrEachPlayer.smCharInfo.szName, lstrlen(chrEachPlayer.smCharInfo.szName), &sizecheck);
+				GetFontTextExtentPoint(NULL, chrEachPlayer.smCharInfo.szName, lstrlen(chrEachPlayer.smCharInfo.szName), &sizecheck);
 				dist = sizecheck.cx >> 1;
 
 				SetFontTextColor(RGB(0, 0, 0));
-				dsTextLineOut(0, MidX - dist + 1, MidY - (h >> 1) + h - 33, chrEachPlayer.smCharInfo.szName, len);
+				dsTextLineOut(NULL, MidX - dist + 1, MidY - (h >> 1) + h - 33, chrEachPlayer.smCharInfo.szName, len);
 				SetFontTextColor(RGB(255, 255, 180));
-				dsTextLineOut(0, MidX - dist, MidY - (h >> 1) + h - 32, chrEachPlayer.smCharInfo.szName, len);
+				dsTextLineOut(NULL, MidX - dist, MidY - (h >> 1) + h - 32, chrEachPlayer.smCharInfo.szName, len);
 
-				//GRAPHICDEVICE->lpDDSBack->ReleaseDC(hdc);
 
 			}
 			else
@@ -4787,9 +4765,7 @@ int DrawEachPlayer(float fx, float fy, int SizeMode)
 					ClanX = MidX - 26;
 					ClanY = MidY - (h >> 1) + 8;
 
-					//GRAPHICDEVICE->BeginScene();
 					DrawClanMark_EachBox(ClanInfo[chrEachPlayer.ClanInfoNum].hClanMark, ClanX - 18, ClanY);
-					//GRAPHICDEVICE->EndScene();
 
 					if (ClanLen < 12)
 						ClanX += (12 - ClanLen) << 1;
@@ -4828,9 +4804,6 @@ int DrawEachPlayer(float fx, float fy, int SizeMode)
 						dsDrawTexImage(MatMonBroodImage[len], MidX + (w / 2) - 24, MidY - (h / 2) + 8, 16, 16, 255, 0);
 				}
 
-				//GRAPHICDEVICE->lpDDSBack->GetDC(&hdc);
-				//SelectObject(hdc, hFont);
-				//SetBkMode(hdc, TRANSPARENT);
 
 				len = lstrlen(chrEachPlayer.smCharInfo.szName);
 				dist = len >> 1;
@@ -4840,11 +4813,11 @@ int DrawEachPlayer(float fx, float fy, int SizeMode)
 				SIZE sizecheck;
 				sizecheck.cx = 0;
 				sizecheck.cy = 0;
-				GetFontTextExtentPoint(0, chrEachPlayer.smCharInfo.szName, lstrlen(chrEachPlayer.smCharInfo.szName), &sizecheck);
+				GetFontTextExtentPoint(NULL, chrEachPlayer.smCharInfo.szName, lstrlen(chrEachPlayer.smCharInfo.szName), &sizecheck);
 				dist = sizecheck.cx >> 1;
 
 				SetFontTextColor(RGB(0, 0, 0));
-				dsTextLineOut(0, MidX - dist + 1, MidY - (h >> 1) + h - 17, chrEachPlayer.smCharInfo.szName, len);
+				dsTextLineOut(NULL, MidX - dist + 1, MidY - (h >> 1) + h - 17, chrEachPlayer.smCharInfo.szName, len);
 
 				dwColor = RGB(255, 255, 255);
 
@@ -4860,14 +4833,14 @@ int DrawEachPlayer(float fx, float fy, int SizeMode)
 
 				SetFontTextColor(dwColor);
 
-				dsTextLineOut(0, MidX - dist, MidY - (h >> 1) + h - 16, chrEachPlayer.smCharInfo.szName, len);
+				dsTextLineOut(NULL, MidX - dist, MidY - (h >> 1) + h - 16, chrEachPlayer.smCharInfo.szName, len);
 
 				if (ClanLen)
 				{
 					SetFontTextColor((0, 0, 0));
-					dsTextLineOut(0, ClanX + 1, ClanY + 1, ClanInfo[chrEachPlayer.ClanInfoNum].ClanInfoHeader.ClanName, ClanLen);
+					dsTextLineOut(NULL, ClanX + 1, ClanY + 1, ClanInfo[chrEachPlayer.ClanInfoNum].ClanInfoHeader.ClanName, ClanLen);
 					SetFontTextColor((150, 255, 200));
-					dsTextLineOut(0, ClanX, ClanY, ClanInfo[chrEachPlayer.ClanInfoNum].ClanInfoHeader.ClanName, ClanLen);
+					dsTextLineOut(NULL, ClanX, ClanY, ClanInfo[chrEachPlayer.ClanInfoNum].ClanInfoHeader.ClanName, ClanLen);
 				}
 
 				if (smConfig.getSecurity() >= AccountTypes::SEC_MODERATOR && cInterFace.sInterFlags.MapOnFlag)
@@ -4875,7 +4848,7 @@ int DrawEachPlayer(float fx, float fy, int SizeMode)
 					dwColor = RGB(255, 255, 255);
 					SetFontTextColor(dwColor);
 
-#ifdef _WINMODE_DEBUG
+#ifdef GAME_GM
 					char szBuff[256];
 
 					int ly = SETTINGSHANDLER->getHeight() / 5 + 15;
@@ -4883,69 +4856,56 @@ int DrawEachPlayer(float fx, float fy, int SizeMode)
 					wsprintf(szBuff, "Nível: %d", chrEachPlayer.smCharInfo.Level);
 
 
-					dsTextLineOut(0, MidX - 50, ly, szBuff, lstrlen(szBuff));
+					dsTextLineOut(NULL, MidX - 50, ly, szBuff, lstrlen(szBuff));
 					ly += 16;
 					wsprintf(szBuff, "Ataque: %d-%d", chrEachPlayer.smCharInfo.Attack_Damage[0], chrEachPlayer.smCharInfo.Attack_Damage[1]);
-					dsTextLineOut(0, MidX - 50, ly, szBuff, lstrlen(szBuff));
+					dsTextLineOut(NULL, MidX - 50, ly, szBuff, lstrlen(szBuff));
 					ly += 16;
 					wsprintf(szBuff, "Defesa: %d", chrEachPlayer.smCharInfo.Defence);
-					dsTextLineOut(0, MidX - 50, ly, szBuff, lstrlen(szBuff));
+					dsTextLineOut(NULL, MidX - 50, ly, szBuff, lstrlen(szBuff));
 					ly += 16;
 					wsprintf(szBuff, "Absorção: %d", chrEachPlayer.smCharInfo.Absorption);
-					dsTextLineOut(0, MidX - 50, ly, szBuff, lstrlen(szBuff));
+					dsTextLineOut(NULL, MidX - 50, ly, szBuff, lstrlen(szBuff));
 					ly += 16;
 					wsprintf(szBuff, "Dinheiro: %d", chrEachPlayer.smCharInfo.Money);
-					dsTextLineOut(0, MidX - 50, ly, szBuff, lstrlen(szBuff));
+					dsTextLineOut(NULL, MidX - 50, ly, szBuff, lstrlen(szBuff));
 					ly += 16;
 					wsprintf(szBuff, "EXP: %d", chrEachPlayer.smCharInfo.Exp);
-					dsTextLineOut(0, MidX - 50, ly, szBuff, lstrlen(szBuff));
+					dsTextLineOut(NULL, MidX - 50, ly, szBuff, lstrlen(szBuff));
 					ly += 16;
 					wsprintf(szBuff, "Precisão: %d", sinGetAccuracy(chrEachPlayer.smCharInfo.Level, chrEachPlayer.smCharInfo.Defence));
-					dsTextLineOut(0, MidX - 50, ly, szBuff, lstrlen(szBuff));
+					dsTextLineOut(NULL, MidX - 50, ly, szBuff, lstrlen(szBuff));
 					ly += 16;
 					wsprintf(szBuff, "Crítico: %d", sinGetCritical(chrEachPlayer.smCharInfo.Level));
-					dsTextLineOut(0, MidX - 50, ly, szBuff, lstrlen(szBuff));
+					dsTextLineOut(NULL, MidX - 50, ly, szBuff, lstrlen(szBuff));
 					ly += 16;
 					wsprintf(szBuff, "Atualização: %d", chrEachPlayer.smCharInfo.bUpdateInfo[0]);
-					dsTextLineOut(0, MidX - 50, ly, szBuff, lstrlen(szBuff));
+					dsTextLineOut(NULL, MidX - 50, ly, szBuff, lstrlen(szBuff));
 					ly += 16;
 					wsprintf(szBuff, "Clã: %d(%d)", chrEachPlayer.smCharInfo.ClassClan, chrEachMaster->ClanInfoNum);
-					dsTextLineOut(0, MidX - 50, ly, szBuff, lstrlen(szBuff));
+					dsTextLineOut(NULL, MidX - 50, ly, szBuff, lstrlen(szBuff));
 					ly += 16;
 
 					if (DisplayDebug)
 					{
 
 						wsprintf(szBuff, "Frame   :%d", chrEachMaster->frame);
-						dsTextLineOut(0, MidX - 100, ly, szBuff, lstrlen(szBuff));
+						dsTextLineOut(NULL, MidX - 100, ly, szBuff, lstrlen(szBuff));
 						ly += 16;
 
 						wsprintf(szBuff, "RcvMoton:%d,%d", (chrEachMaster->PlayBuffCnt & PLAYBUFF_MASK), (chrEachMaster->PlayBuffPosi_End & PLAYBUFF_MASK));
-						dsTextLineOut(0, MidX - 100, ly, szBuff, lstrlen(szBuff));
+						dsTextLineOut(NULL, MidX - 100, ly, szBuff, lstrlen(szBuff));
 						ly += 16;
 
 						wsprintf(szBuff, "User Code :%d", chrEachMaster->dwObjectSerial);
-						dsTextLineOut(0, MidX - 100, ly, szBuff, lstrlen(szBuff));
+						dsTextLineOut(NULL, MidX - 100, ly, szBuff, lstrlen(szBuff));
 						ly += 16;
 					}
 #endif
 				}
 
-
-
-				//GRAPHICDEVICE->lpDDSBack->ReleaseDC(hdc);
 			}
 
-			//MidX = mx;
-			//MidY = my;
-
-			//if(Settings::getInstance()->isWideScreen())
-			//{
-			//	smRender.SMSHIFT_PERSPECTIVE_WIDTH = 0;
-			//}
-			//else
-			//{
-			//	smRender.SMSHIFT_PERSPECTIVE_WIDTH = RENDCLIP_DEFAULT_SHIFT_PERSPECTIVE_WIDTH;
 
 
 			MidX = mx;
@@ -4953,8 +4913,8 @@ int DrawEachPlayer(float fx, float fy, int SizeMode)
 
 			smRender.SMSHIFT_PERSPECTIVE_WIDTH = 0;
 			smRender.SMMULT_PERSPECTIVE_HEIGHT = RENDCLIP_DEFAULT_MULT_PERSPECTIVE_HEIGHT;
-		}
-	
+					}
+				}
 
 	if (chrEachMaster && chrEachMaster->ActionPattern == 99)
 	{
@@ -4991,7 +4951,7 @@ int DrawEachPlayer(float fx, float fy, int SizeMode)
 	}
 
 	return FALSE;
-}
+			}
 //
 //int DrawEachPlayer(float fx, float fy, int SizeMode)
 //{

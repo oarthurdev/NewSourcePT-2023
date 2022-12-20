@@ -825,6 +825,21 @@ private:
 	BOOL		EndFlag;
 };
 
+//Efeito Rei PvP
+class AssaSkillTopPvPEfect : public cASSAEFFECT
+{
+public:
+	AssaSkillTopPvPEfect();
+	~AssaSkillTopPvPEfect();
+	void Start(smCHAR* character, int liveCount);
+	void Main();
+
+private:
+	int			ParticleID;
+	BOOL		MyCharacterFlag;
+
+	BOOL		EndFlag;
+};
 
 class AssaSkillTriumphOfValhallaPart : public cASSAEFFECT
 {

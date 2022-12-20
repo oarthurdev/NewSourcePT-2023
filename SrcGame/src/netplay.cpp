@@ -3071,40 +3071,44 @@ int rsTRANS_SERVER::RecvMessage(SocketData* pcSocketData, char* psPacket)
 
 		lpCurPlayer->sBlessCastle_Damage[1] = smTransCommand->WParam;
 
+		sSKILL haPVP;
+
 		if (smTransCommand->SParam)
 		{
-			if (!lpCurPlayer->PlayCursePvP)
+
+			ReiPVP = TRUE;
+
+			for (int j = 0; j < SIN_MAX_SKILL; j++)
 			{
-				sSKILL haPVP;
-
-				//ReiPVP = TRUE;
-
-				for (int j = 0; j < SIN_MAX_SKILL; j++)
+				if (sSkill[j].CODE == REIPVP)
 				{
-					if (sSkill[j].CODE == REIPVP)
-					{
-						memcpy(&haPVP, &sSkill[j], sizeof(sSKILL));
-						haPVP.UseTime = 604800;
-						sinContinueSkillSet(&haPVP);
-						//bReiPVP = TRUE;
-						//lpCurPlayer->PlayCursePvP = TRUE;
-						break;
-					}
+					memcpy(&haPVP, &sSkill[j], sizeof(sSKILL));
+					haPVP.UseTime = 604800;
+					sinContinueSkillSet(&haPVP);
+					bReiPVP = TRUE;
+					lpCurPlayer->PlayCursePvP = TRUE;
+					break;
 				}
-				bReiPVP = TRUE;
-				lpCurPlayer->PlayCursePvP = dwPlayTime + 604800;
-				AssaParticle_KeepSkillEffect("TopPVP", lpCurPlayer, 604800, REIPVP);
 			}
 		}
-
-		else if (lpCurPlayer->PlayCursePvP)
+		else
 		{
-			cSkill.CancelContinueSkill(REIPVP);
-			bReiPVP = FALSE;
-			lpCurPlayer->PlayCursePvP = 0;
-			StopAssaCodeEffect(lpCurPlayer, REIPVP);
+			//DESATIVAR REI PVP
+			ReiPVP = FALSE;
 
-		}
+			for (int j = 0; j < SIN_MAX_SKILL; j++)
+			{
+				if (sSkill[j].CODE == REIPVP)
+				{
+					memcpy(&haPVP, &sSkill[j], sizeof(sSKILL));
+					haPVP.UseTime = 0;
+					cSkill.CancelContinueSkill(REIPVP); //TIRA BUFF
+					bReiPVP = FALSE;
+					lpCurPlayer->PlayCursePvP = FALSE; //TIRA EFEITO
+					break;
+				}
+			}
+		};
 
 		break;
 	}

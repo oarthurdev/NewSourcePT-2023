@@ -24,6 +24,7 @@ int Teste;
 #include "BattleEvents\\CBattleEventsWindow.h"
 #include "BattleEvents\\CRollHandler.h"
 #include "cSorteio.h"
+#include "cTarget.h"
 
 
 void sinInit()
@@ -45,7 +46,7 @@ void sinInit()
 	cSinSod2.Init();
 	cEmoji.Init();
 	cCoinShop.Init();
-	//Sorteio->Init();
+	Sorteio->Init();
 	cCoinShop_T.Init();
 	InitBmpFont();
 	cRestaure.Load();
@@ -53,7 +54,8 @@ void sinInit()
 	cPCBANGPet.Init();
 	cSkinChanger.Init();
 
-	
+	cTarget.Init();
+
 	chaSiege.init();
 	chaQuest.init();
 	chaPremiumitem.init();
@@ -205,9 +207,6 @@ void sinDraw()
 	cShop.Draw();
 	
 	cShop.DrawShopText();
-
-
-
 	
 	cTrade.Draw();
 	
@@ -421,6 +420,8 @@ void sinProc(int Message)
 			break;
 
 		if (Sorteio->OnMouseClick(true)) break;
+
+		cTarget.LButtonDown();
 		cInvenTory.CheckMousePotionNumForm();
 		cMessageBox.LButtonDown(pCursorPos.x, pCursorPos.y);
 		cSinSod2.LButtonDown(pCursorPos.x, pCursorPos.y);

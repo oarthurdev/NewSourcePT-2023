@@ -6152,17 +6152,31 @@ void AssaSkill_ModoPvP(smCHAR* pDestChar, int liveCount)
 
 
 
-void AssaSkill_ReiPvP(smCHAR* pChar)
+void AssaSkillTopPvP(smCHAR* pDestChar, int liveCount)
 {
-	if (GetAssaCodeEffect(pChar, REIPVP) == FALSE)
+
+	if (AddAssaCodeEffectTime(pDestChar, REIPVP, liveCount * 70 + 140) == false)
 	{
+		POINT3D charPos;
+		charPos.x = pDestChar->pX;
+		charPos.y = pDestChar->pY;
+		charPos.z = pDestChar->pZ;
+
+		Assa = SetAssaEffect(0, "ReiPvP.ASE", 0, &charPos, 0, 0);
+		cAssaEffect[Assa]->Time = -60;
+		cAssaEffect[Assa]->AniMaxCount = 20;
+		cAssaEffect[Assa]->AniDelayTime = 6;
+		cAssaEffect[Assa]->MOVECODE = ASSA_CHAR_POSI;
+		cAssaEffect[Assa]->pChar = pDestChar;
+
+		cAssaEffect[Assa]->Temp[8] = 1;
+		cAssaEffect[Assa]->TempPosi.x = 0;
+		cAssaEffect[Assa]->TempPosi.y = 0;
+		cAssaEffect[Assa]->TempPosi.z = 0;
+
 		int i = GetAssaEffect();
-		cAssaTraceCharMeshParticle *traceMeshParticle = new cAssaTraceCharMeshParticle;
-		traceMeshParticle->Start(pChar, "Bip01", "TopPVP");
-		traceMeshParticle->SetScale(float(pChar->smCharInfo.wPlayClass[1]) / 256.f);
-		cAssaEffect[i] = traceMeshParticle;
-		cAssaEffect[i]->CODE = REIPVP;
-
-
+		AssaSkillTopPvPEfect* TopPvP = new AssaSkillTopPvPEfect;
+		TopPvP->Start(pDestChar, liveCount);
+		cAssaEffect[i] = TopPvP;
 	}
 }
