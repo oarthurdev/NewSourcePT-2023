@@ -2439,12 +2439,12 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 
 	else if (pSkill->CODE == PLAYERVIP)
 	{
-	// ID
-	lstrcpy(szSkillInfoBuff, "Vip\r");
-	lstrcat(szSkillInfoBuff2, "\r");
-	lstrcat(szSkillInfoBuff, "/comandos para ver os beneficios\r");
+		lstrcpy(szSkillInfoBuff, "Vip\r");
+		lstrcat(szSkillInfoBuff2, "\r");
+		lstrcat(szSkillInfoBuff, "\r");
+		lstrcat(szSkillInfoBuff, "/comandos para ver os beneficios\r");
 
-	LineCount = 3;
+		LineCount = 3;
 	}
 
 	lstrcat(szSkillInfoBuff, "\r");

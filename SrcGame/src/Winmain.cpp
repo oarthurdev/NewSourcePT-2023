@@ -4031,6 +4031,8 @@ int DrawGameState()
 					iTopRankerJobCode = lpCharMsgSort[cnt]->smCharInfo.JOB_CODE;
 
 				const char* pvpKing = "Top PVP";
+				char vipName[64] = "VIP ";
+
 				DWORD pvpKingColor = RGB(255, 51, 51);
 				DWORD clanColor = RGB(150, 255, 200);
 				DWORD topLevelColor = RGB(234, 255, 0);
@@ -4048,13 +4050,6 @@ int DrawGameState()
 						wsprintf(clanName, "%d/%d", lpCharMsgSort[cnt]->smCharInfo.ClassClan, lpCharMsgSort[cnt]->ClanInfoNum);
 					else
 						wsprintf(clanName, "[%s]", szClanName);
-
-					if ((lpCharMsgSort[cnt]->PlayerVip))
-					{
-						DrawThreeLineMessage(lpCharMsgSort[cnt]->RendPoint.x, lpCharMsgSort[cnt]->RendRect2D.top + y,
-							"VIP", strBuff, lpCharMsgSort[cnt]->smCharInfo.szName, RGB(150, 255, 200), RGB(230, 160, 255), dwColor, lpDDS_clanMark, selectedBox, dwClanMgrBit);
-
-					}
 
 					// Char eh rei do PVP + clan
 					if (lpCharMsgSort[cnt]->PlayCursePvP)
@@ -4090,18 +4085,38 @@ int DrawGameState()
 							strcpy_s(message2, sizeof(message2), pvpKing);
 							strcpy_s(message3, sizeof(message3), lpCharMsgSort[cnt]->smCharInfo.szName);
 
-							DrawThreeLineMessage(
-								lpCharMsgSort[cnt]->RendPoint.x,
-								lpCharMsgSort[cnt]->RendRect2D.top + y,
-								message1, // Rei do PVP RGB(150, 255, 200)
-								message2, // Nome do Clan RGB(255, 51, 51),
-								message3, // Nome do personagem dwColor
-								clanColor, // Cor Rei do PVP
-								pvpKingColor, // Cor Nome do Clan
-								dwColor, // Cor Nome do personagem
-								lpDDS_clanMark,
-								selectedBox,
-								dwClanMgrBit);
+							strcat_s(vipName, sizeof(vipName), message3);
+
+							if ((lpCharMsgSort[cnt]->PlayerVip))
+							{
+								DrawThreeLineMessage(
+									lpCharMsgSort[cnt]->RendPoint.x,
+									lpCharMsgSort[cnt]->RendRect2D.top + y,
+									message1, // Rei do PVP RGB(150, 255, 200)
+									message2, // Nome do Clan RGB(255, 51, 51),
+									vipName, // Nome do personagem dwColor
+									clanColor, // Cor Rei do PVP
+									pvpKingColor, // Cor Nome do Clan
+									dwColor, // Cor Nome do personagem
+									lpDDS_clanMark,
+									selectedBox,
+									dwClanMgrBit);
+							}
+							else {
+								DrawThreeLineMessage(
+									lpCharMsgSort[cnt]->RendPoint.x,
+									lpCharMsgSort[cnt]->RendRect2D.top + y,
+									message1, // Rei do PVP RGB(150, 255, 200)
+									message2, // Nome do Clan RGB(255, 51, 51),
+									message3, // Nome do personagem dwColor
+									clanColor, // Cor Rei do PVP
+									pvpKingColor, // Cor Nome do Clan
+									dwColor, // Cor Nome do personagem
+									lpDDS_clanMark,
+									selectedBox,
+									dwClanMgrBit);
+							
+							}
 						}
 					}
 					else if (lpCharMsgSort[cnt]->dwTopRankUserEffectTime) // Char eh top ranking
@@ -4148,10 +4163,6 @@ int DrawGameState()
 					char message2[64] = { 0 };
 					char message3[64] = { 0 };
 
-					if ((lpCharMsgSort[cnt]->PlayerVip)) {
-						DrawTwoLineMessage(lpCharMsgSort[cnt]->RendPoint.x, lpCharMsgSort[cnt]->RendRect2D.top + y, "Vip", lpCharMsgSort[cnt]->smCharInfo.szName, RGB(230, 160, 255), dwColor, lpDDS_clanMark, selectedBox, dwClanMgrBit);
-					}
-
 					// Char eh rei do PVP
 					if (lpCharMsgSort[cnt]->PlayCursePvP)
 					{
@@ -4178,14 +4189,27 @@ int DrawGameState()
 						{
 							strcpy_s(message1, sizeof(message1), pvpKing);
 							strcpy_s(message2, sizeof(message2), lpCharMsgSort[cnt]->smCharInfo.szName);
+							strcat_s(vipName, sizeof(vipName), message2);
 
-							DrawTwoLineMessage(
-								lpCharMsgSort[cnt]->RendPoint.x,
-								lpCharMsgSort[cnt]->RendRect2D.top + y,
-								message1, // Rei do PVP RGB(150, 255, 200)
-								message2, // Nome do personagem dwColor
-								pvpKingColor, // Cor Rei do PVP
-								dwColor); // Cor Nome do personagem
+							if ((lpCharMsgSort[cnt]->PlayerVip))
+							{
+								DrawTwoLineMessage(
+									lpCharMsgSort[cnt]->RendPoint.x,
+									lpCharMsgSort[cnt]->RendRect2D.top + y,
+									message1, // Rei do PVP RGB(150, 255, 200)
+									vipName, // Nome do personagem dwColor
+									pvpKingColor, // Cor Rei do PVP
+									dwColor); // Cor Nome do personagem
+							}
+							else {
+								DrawTwoLineMessage(
+									lpCharMsgSort[cnt]->RendPoint.x,
+									lpCharMsgSort[cnt]->RendRect2D.top + y,
+									message1, // Rei do PVP RGB(150, 255, 200)
+									message2, // Nome do personagem dwColor
+									pvpKingColor, // Cor Rei do PVP
+									dwColor); // Cor Nome do personagem
+							}
 						}
 					}
 					else if (lpCharMsgSort[cnt]->dwTopRankUserEffectTime) // Char eh top ranking e nao eh rei do PVP
@@ -4206,22 +4230,43 @@ int DrawGameState()
 					else // Char nao eh top ranking nem rei do pvp nem tem clan, ou seja, eh um porra nenhuma kkk
 					{
 						strcpy_s(message1, sizeof(message1), lpCharMsgSort[cnt]->smCharInfo.szName);
+						strcat_s(vipName, sizeof(vipName), message1);
 
-						DrawCharacterMessage(
-							lpCharMsgSort[cnt]->RendPoint.x,
-							lpCharMsgSort[cnt]->RendRect2D.top + y,
-							message1, // Nome do personagem dwColor
-							dwColor); // Cor Nome do personagem
+						if ((lpCharMsgSort[cnt]->PlayerVip))
+						{
+							DrawCharacterMessage(
+								lpCharMsgSort[cnt]->RendPoint.x,
+								lpCharMsgSort[cnt]->RendRect2D.top + y,
+								vipName, // Nome do personagem dwColor
+								dwColor); // Cor Nome do personagem
 
-						DrawCharacterMessage(lpCharMsgSort[cnt]->RendPoint.x,
-							lpCharMsgSort[cnt]->RendRect2D.top + y,
-							message1,
-							30,
-							lpDDS_clanMark,
-							szClanName,
-							dwColor,
-							selectedBox,
-							dwClanMgrBit);
+							DrawCharacterMessage(lpCharMsgSort[cnt]->RendPoint.x,
+								lpCharMsgSort[cnt]->RendRect2D.top + y,
+								vipName,
+								30,
+								lpDDS_clanMark,
+								szClanName,
+								dwColor,
+								selectedBox,
+								dwClanMgrBit);
+						}
+						else {
+							DrawCharacterMessage(
+								lpCharMsgSort[cnt]->RendPoint.x,
+								lpCharMsgSort[cnt]->RendRect2D.top + y,
+								message1, // Nome do personagem dwColor
+								dwColor); // Cor Nome do personagem
+
+							DrawCharacterMessage(lpCharMsgSort[cnt]->RendPoint.x,
+								lpCharMsgSort[cnt]->RendRect2D.top + y,
+								message1,
+								30,
+								lpDDS_clanMark,
+								szClanName,
+								dwColor,
+								selectedBox,
+								dwClanMgrBit);
+						}
 					}
 				}
 			}

@@ -2472,6 +2472,7 @@ void cINVENTORY::RButtonDown(int x, int y)
 			iEventBuyItemKind = 0;
 
 			/*if (InvenItem[SelectInvenItemIndex - 1].sItemInfo.CODE == (sinBI2 | sin45))
+			/*if (InvenItem[SelectInvenItemIndex - 1].sItemInfo.CODE == (sinBI2 | sin45))
 			{
 				if (sinChar->Level <= 154)
 				{
@@ -2812,6 +2813,23 @@ void cINVENTORY::RButtonDown(int x, int y)
 				chaPremiumitem.UsePremiumItem(178);
 			}
 			
+			if (InvenItem[SelectInvenItemIndex - 1].sItemInfo.CODE == (sinBI3 | sin17) ||
+				InvenItem[SelectInvenItemIndex - 1].sItemInfo.CODE == (sinBI3 | sin18) ||
+				InvenItem[SelectInvenItemIndex - 1].sItemInfo.CODE == (sinBI3 | sin19))
+			{
+				for (i = 0; i < MAX_CONTINUE_SKILL; i++)
+				{
+					if (ContinueSkill[i].CODE == PLAYERVIP)
+					{
+						if (ContinueSkill[i].Flag)
+						{
+							cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+							return;
+						}
+					}
+				}
+			}
+
 			if (InvenItem[SelectInvenItemIndex - 1].sItemInfo.CODE == (sinBI1 | sin01))
 				chaPremiumitem.UsePremiumItem(1);
 
