@@ -2391,7 +2391,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 		//lstrcat(szSkillInfoBuff2, "\r");
 		//lstrcat(szSkillInfoBuff2, "\r");
 
-		LineCount = 5;
+		LineCount = 3;
 	}
 
 	/*else if (pSkill->CODE == PLAYER_ARENA)
