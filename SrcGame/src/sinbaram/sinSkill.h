@@ -388,7 +388,7 @@ struct sSKILL
 	int     ShortKey;
 	int     MousePosi;
 	int     Position;
-	int     UseTime;
+	double  UseTime;
 	int     CheckTime;
 	int     GageLength;
 	int     GageLength2;

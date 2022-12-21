@@ -386,6 +386,7 @@ struct smTRANS_VIP
 
 	int Ativo;
 	int Vip;
+	int Until;
 	DWORD dwTopSerial;
 	smTRANS_VIP()
 	{
@@ -394,6 +395,7 @@ struct smTRANS_VIP
 
 		Ativo = 0;
 		Vip = 0;
+		Until = 0;
 		dwTopSerial = 0;
 	}
 

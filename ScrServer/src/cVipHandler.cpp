@@ -22,6 +22,7 @@ void cVipHandler::InsertDB(rsPLAYINFO* lpPlayInfo, int IdVip , int time)
 			db->BindInputParameter(&IdVip, 2, PARAMTYPE_Integer);
 			db->Execute(false);
 		}
+
 		db->Close();
 	}
 
@@ -29,6 +30,7 @@ void cVipHandler::InsertDB(rsPLAYINFO* lpPlayInfo, int IdVip , int time)
 	sPacket.code = OpCode::OPCODE_VIP;
 	sPacket.size = sizeof(sPacket);
 	sPacket.Vip = IdVip;
+	sPacket.Until = time;
 	sPacket.Ativo = TRUE;
 
 	lpPlayInfo->lpsmSock->Send((char*)&sPacket, sPacket.size, TRUE);

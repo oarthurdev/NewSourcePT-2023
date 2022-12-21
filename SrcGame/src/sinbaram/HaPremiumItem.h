@@ -41,6 +41,7 @@ const DWORD SINITEM_TIME_3HOURS = (3 * 60 * 60 * 1);
 const DWORD SINITEM_TIME_6HOURS = (6 * 60 * 60 * 1);
 const DWORD SINITEM_TIME_12HOURS = (12 * 60 * 60 * 1);
 const DWORD SINITEM_TIME_ONEDAY = (24 * 60 * 60 * 1);
+const DWORD SINITEM_TIME_THREEDAY = (3 * 24 * 60 * 60 * 1);
 const DWORD SINITEM_TIME_SEVENDAY = (7 * 24 * 60 * 60 * 1);
 const DWORD SINITEM_TIME_30DAY = (30 * 24 * 60 * 60 * 1);
 
@@ -115,6 +116,7 @@ public:
 	DWORD m_ForceTime;
 	int	m_ForceType;
 
+	int m_VipTime;
 
 	DWORD				  m_TerryTime;
 
@@ -168,6 +170,7 @@ public:
 	void SetBDivinaTime(DWORD Time) { m_BDivinaTime = Time; };
 	void SetForceTime(DWORD Time) { m_ForceTime = Time; };
 	void SetForceType(int Value) { m_ForceType = Value; };
+	void SetTimeVip(DWORD Time) { m_VipTime = Time; };
 
 	int  UseHairtintPotion(int ItemKind);
 

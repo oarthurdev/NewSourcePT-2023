@@ -3182,6 +3182,8 @@ int rsTRANS_SERVER::RecvMessage(SocketData* pcSocketData, char* psPacket)
 		{
 			sSKILL haVIP;
 
+			chaPremiumitem.SetTimeVip(smTransCommand->Until);
+
 			//PlayerGM = TRUE;
 			lpCurPlayer->PlayerVip = TRUE;
 
@@ -3190,7 +3192,17 @@ int rsTRANS_SERVER::RecvMessage(SocketData* pcSocketData, char* psPacket)
 				if (sSkill[j].CODE == PLAYERVIP)
 				{
 					memcpy(&haVIP, &sSkill[j], sizeof(sSKILL));
-					haVIP.UseTime = 604800;
+					
+					if (chaPremiumitem.m_VipTime == 3) {
+						haVIP.UseTime = SINITEM_TIME_THREEDAY;
+					}
+					else if (chaPremiumitem.m_VipTime == 7) {
+						haVIP.UseTime = SINITEM_TIME_SEVENDAY;
+					}
+					else {
+						haVIP.UseTime = SINITEM_TIME_30DAY;
+					}
+
 					sinContinueSkillSet(&haVIP);
 
 					lpCurPlayer->PlayerVip = TRUE;
